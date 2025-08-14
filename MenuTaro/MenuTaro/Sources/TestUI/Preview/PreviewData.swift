@@ -16,10 +16,50 @@ struct PreviewData {
         image: "TestBookmark"
     )
     
+    static let sampleFoodKorean2 = FoodCard (
+        foodId: UUID(),
+        name: "된장찌개",
+        details: "구수한 된장찌개",
+        category: .korean,
+        image: "TestBookmark"
+        )
+    
+    static let sampleFoodKorean3 = FoodCard (
+        foodId: UUID(),
+        name: "김치찌개",
+        details: "돼지고기? 참치?",
+        category: .korean,
+        image: "TestBookmark"
+        )
+    
+    static let sampleFoodKorean4 = FoodCard (
+        foodId: UUID(),
+        name: "콩나물 국밥",
+        details: "계란 넣는 타이밍은?",
+        category: .korean,
+        image: "TestBookmark"
+        )
+    
     static let sampleFoodJapanese = FoodCard(
         foodId: UUID(),
         name: "초밥",
-        details: "한교동 운다",
+        details: "한교동",
+        category: .japanese,
+        image: "TestBookmark"
+    )
+    
+    static let sampleFoodJapanese2 = FoodCard(
+        foodId: UUID(),
+        name: "라멘",
+        details: "라멘",
+        category: .japanese,
+        image: "TestBookmark"
+    )
+    
+    static let sampleFoodJapanese3 = FoodCard(
+        foodId: UUID(),
+        name: "카츠",
+        details: "최애",
         category: .japanese,
         image: "TestBookmark"
     )

@@ -20,7 +20,13 @@ func makePreviewContainer() -> ModelContainer {
     
     let foods = [
         PreviewData.sampleFoodKorean,
-        PreviewData.sampleFoodJapanese
+        PreviewData.sampleFoodKorean2,
+        PreviewData.sampleFoodKorean3,
+        PreviewData.sampleFoodKorean4,
+        PreviewData.sampleFoodJapanese,
+        PreviewData.sampleFoodJapanese2,
+        PreviewData.sampleFoodJapanese3,
+        
     ]
     
     for food in foods {

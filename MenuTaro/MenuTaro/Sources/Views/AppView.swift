@@ -6,13 +6,60 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AppView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.clear.appBackground()
+            
+            TabView {
+                NavigationStack {
+                    BookmarkView()
+                        .navigationTitle("북마크")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .background(Color.clear) // 개별 뷰 배경 제거
+                }
+                .tabItem {
+                    Image(systemName: "bookmark")
+                    Text("북마크").appFont(17)
+                }
+                
+                NavigationStack {
+                    HomeView()
+                        .navigationTitle("홈")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .background(Color.clear)
+                }
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("홈").appFont(17)
+                }
+                
+                NavigationStack {
+                    MypageView()
+                        .navigationTitle("마이페이지")
+                        .navigationBarTitleDisplayMode(.inline)
+                        .background(Color.clear)
+                }
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("마이페이지").appFont(17)
+                }
+            }
+            .accentColor(.primaryRed)
+        }
+        .preferredColorScheme(.dark)
     }
 }
 
+
 #Preview {
     AppView()
+        .modelContainer(makePreviewContainer())
+//        .modelContainer(
+//            for: [User.self, Snack.self, FoodCard.self, ConsumptionRecord.self, Bookmark.self],
+//            inMemory: true
+//        )
 }
+
