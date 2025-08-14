@@ -27,7 +27,6 @@ struct AppView: View {
                 
                 NavigationStack {
                     HomeView()
-                        .navigationTitle("홈")
                         .navigationBarTitleDisplayMode(.inline)
                         .background(Color.clear)
                 }
