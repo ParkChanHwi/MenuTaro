@@ -40,6 +40,16 @@ struct AppView: View {
                         .navigationTitle("마이페이지")
                         .navigationBarTitleDisplayMode(.inline)
                         .background(Color.clear)
+                        .toolbar {
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        Button {
+                                            // 톱니바퀴 눌렀을 때 동작 추가(타이틀 옆)
+                                        } label: {
+                                            Image(systemName: "gearshape")
+                                                .foregroundColor(.white)
+                                        }
+                                    }
+                                }
                 }
                 .tabItem {
                     Image(systemName: "person")

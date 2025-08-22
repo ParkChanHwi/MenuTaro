@@ -53,7 +53,7 @@ struct BookmarkView: View {
 
 #Preview {
     BookmarkView()
-    .modelContainer(makePreviewContainer())
+        .modelContainer(makePreviewContainer())
 }
 
 

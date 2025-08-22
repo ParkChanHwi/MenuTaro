@@ -11,7 +11,7 @@ import Foundation
 @MainActor
 func makePreviewContainer() -> ModelContainer {
     let container = try! ModelContainer(
-        for: Bookmark.self, FoodCard.self, User.self, Snack.self, ConsumptionRecord.self,
+        for: Bookmark.self, FoodCard.self, User.self, Snack.self, ConsumptionRecord.self, Mypage.self,
         configurations: ModelConfiguration(isStoredInMemoryOnly: true)
     )
     let context = container.mainContext
@@ -38,6 +38,15 @@ func makePreviewContainer() -> ModelContainer {
             user: PreviewData.sampleUser
         )
         context.insert(bookmark)
+    }
+    //마이페이지 추가
+    if foods.count >= 3 {
+        let menuTop3: [Mypage] = [
+            Mypage(rank: 1, food: foods[0], user: PreviewData.sampleUser),
+            Mypage(rank: 2, food: foods[1], user: PreviewData.sampleUser),
+            Mypage(rank: 3, food: foods[2], user: PreviewData.sampleUser),
+        ]
+        menuTop3.forEach { context.insert($0) }
     }
     
     try! context.save()
