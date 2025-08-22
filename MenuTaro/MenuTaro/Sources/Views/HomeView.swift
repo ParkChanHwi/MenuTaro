@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
+  
+    @Query(sort: \Bookmark.createdAt, order: .reverse)
+    private var bookmarks: [Bookmark]
+    
     var body: some View {
         ZStack{
             Color.black.ignoresSafeArea(.all)
@@ -81,7 +86,22 @@ struct HomeView: View {
                         .font(.custom("SFPro-Regular", size: 12))
                     }
                     .buttonStyle(.plain) // 기본 버튼 스타일 제거 → 배경/하이라이트 안 뜨게
-                    
+                }
+                .padding(.horizontal, 20)
+                
+                if bookmarks.isEmpty {
+                    Text("아직 북마크 X")
+                        .foregroundColor(.gray)
+                        .padding(.top, 8)
+                } else {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 18) {
+                            ForEach(bookmarks.prefix(5), id: \.persistentModelID) { bookmark in
+                                BookmarkCardView(bookmark: bookmark)
+                            }
+                        }
+                        .padding(.horizontal, 20)
+                    }
                 }
             }
         }
@@ -128,5 +148,21 @@ func category(text: String, imageName: String) -> some View {
 
 
 #Preview {
-    HomeView()
+    do {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try ModelContainer(for: Bookmark.self, FoodCard.self, User.self, configurations: config)
+
+        let user = User(nickname: "테스트", profileImage: "testProfile")
+        let food = FoodCard(foodId: UUID(), name: "치킨", details: "맛있는 치킨", category: .etc, image: "chicken")
+        let bookmark = Bookmark(bookmarkId: UUID(), createdAt: Date(), food: food, user: user)
+
+        container.mainContext.insert(user)
+        container.mainContext.insert(food)
+        container.mainContext.insert(bookmark)
+
+        return HomeView()
+            .modelContainer(container)
+    } catch {
+        fatalError("Preview 실패: \(error.localizedDescription)")
+    }
 }
