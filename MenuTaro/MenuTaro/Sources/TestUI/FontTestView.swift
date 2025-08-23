@@ -11,7 +11,7 @@ struct FontTestView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("SFPro 일반형 텍스트입니다.")
-                .font(.custom("SFPro-Regular", size: 24)) // For SF Pro, you'd often use .system or .largeTitle etc.
+                .font(.custom("SFPro-Regular", size: 24))
             
             Text("SFPro 강조한 폰트 텍스트입니다.")
                 .font(.custom("SFPro-Bold", size: 24))
