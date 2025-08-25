@@ -8,6 +8,8 @@
 import SwiftUI
 import SwiftData
 
+// HomeView.swift
+
 struct HomeView: View {
   
     @Query(sort: \Bookmark.createdAt, order: .reverse)
@@ -15,21 +17,21 @@ struct HomeView: View {
     
     var body: some View {
         ZStack{
-            Color.black.ignoresSafeArea(.all)
-            
-            VStack{
+            VStack {
                 Image(systemName: "bell.fill")
                     .foregroundColor(.white)
                     .frame(width: 24, height: 22)
                     .padding(.bottom, 62)
                     .padding(.leading, 362)
-                HStack{
+                
+                HStack {
                     Text("안녕!\n오늘은 뭘\n먹어볼까?")
                         .foregroundColor(.white)
                         .font(.system(size: 28, weight: .semibold, design: .default))
                         .padding(.trailing, 70)
                     
-                    ZStack{
+                    // 기존 Circle 이미지 부분 그대로 두기
+                    ZStack {
                         Circle()
                             .fill(
                                 LinearGradient(
@@ -39,7 +41,6 @@ struct HomeView: View {
                                     ]),
                                     startPoint: .top, endPoint: .bottom
                                 )
-                                
                             )
                             .frame(width: 160, height: 160)
                             .cornerRadius(100)
@@ -48,7 +49,7 @@ struct HomeView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 159.26, height: 160)
-                            .clipShape(Circle()) // 원 모양에 맞게 잘라줌
+                            .clipShape(Circle())
                         
                         RoundedRectangle(cornerRadius: 18)
                             .fill(.red)
@@ -63,11 +64,41 @@ struct HomeView: View {
                     }
                 }
                 
-                category(text: "데일리 메뉴 타로", imageName: "card_home")
-                category(text: "간식 포춘쿠키", imageName: "cookie_broken_home")
-                    .padding(.bottom, 12)
+                VStack(spacing : 8) {
+                    GradientCardView(width: 358, height: 124) {
+                        HStack {
+                            Text("데일리 메뉴 타로")
+                                .font(.system(size: 18, weight: .medium, design: .default))
+                                .foregroundColor(.white)
+                                .frame(width: 126, height: 22)
+                            
+                            Image("card_home")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 202.52, height: 151.83)
+                        }
+                        .padding(.leading, 20)
+                    }
+                    
+                    GradientCardView(width: 358, height: 124) {
+                        HStack {
+                            Text("간식 포춘쿠키")
+                                .font(.system(size: 18, weight: .medium, design: .default))
+                                .foregroundColor(.white)
+                                .frame(width: 126, height: 22)
+                            
+                            Image("cookie_broken_home")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 202.52, height: 151.83)
+                        }
+                    }
+                }
+                .padding(.bottom, 12)
+
                 
-                HStack{
+                // 이하 "최근에 먹은 메뉴" 부분 그대로 유지
+                HStack {
                     Text("최근에 먹은 메뉴")
                         .foregroundColor(.white)
                         .font(.system(size: 18, weight: .medium, design: .default))
@@ -85,7 +116,7 @@ struct HomeView: View {
                         .foregroundColor(.gray)
                         .font(.custom("SFPro-Regular", size: 12))
                     }
-                    .buttonStyle(.plain) // 기본 버튼 스타일 제거 → 배경/하이라이트 안 뜨게
+                    .buttonStyle(.plain)
                 }
                 .padding(.horizontal, 20)
                 
@@ -113,38 +144,6 @@ extension Color {
     static let myColor2 = Color("myColor2")
 }
 
-
-func category(text: String, imageName: String) -> some View {
-    Rectangle()
-        .fill(
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(red: 255/255, green: 73/255, blue: 35/255),
-                    Color(red: 33/255, green: 33/255, blue: 33/255)
-                ]),
-                startPoint: .leading, endPoint: .trailing
-            )
-        )
-        .frame(width: 358, height: 124)
-        .cornerRadius(20)
-        .overlay(
-            HStack{
-                Text(text)
-                    .font(.system(size: 18, weight: .medium, design: .default))
-                    .foregroundColor(.white)
-                    .frame(width: 126, height: 22)
-                
-                Image(imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 202.52, height: 151.83)
-                    .padding(.bottom, 40)
-            }
-                .padding(.leading, 20)
-                .padding(.top, 56)
-        )
-        .padding(.bottom, 17)
-}
 
 
 #Preview {
