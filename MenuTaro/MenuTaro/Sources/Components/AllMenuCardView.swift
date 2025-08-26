@@ -33,40 +33,46 @@ struct AllMenuCardView: View {
     var body: some View {
         GradientCardView(width: width, height: height, isActive: isActive) {
             GeometryReader { geometry in
-                VStack(spacing: 0) {
-                    HStack {
-                        Text(title)
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(.white)
+                ZStack {
+                    // 상단 텍스트 영역
+                    VStack {
+                        HStack {
+                            Text(title)
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(.white)
+                            
+                            Spacer()
+                            
+                            Text("\(count)")
+                                .foregroundColor(.white)
+                                .font(.system(size: 18, weight: .bold))
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.white)
+                                .font(.system(size: 16))
+                        }
+                        .padding(.top, 16)
+                        .padding(.horizontal, 16)
                         
-                        Spacer()
-                        
-                        Text("\(count)")
-                            .foregroundColor(.white)
-                            .font(.system(size: 18, weight: .bold))
-                        
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.white)
-                            .font(.system(size: 16))
+                        Spacer() // 텍스트를 상단에 고정
                     }
-                    .padding(.top, 16)
-                    .padding(.horizontal, 16)
-                    .frame(height: geometry.size.height * 0.35) // 상단 영역 35%
                     
-                    Spacer()
-                    
-                    HStack {
+                    // 이미지 영역 (하단에 배치하되 잘리도록)
+                    VStack {
                         Spacer()
-                        Image(imageName)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: geometry.size.height * 1.2) // 이미지 영역 55%
-                            .padding(.trailing, 20)
+                        HStack {
+                            Image(imageName)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 1.2)
+                                .offset(x: -30) // 이미지만 왼쪽으로 30포인트 이동
+                            Spacer()
+                        }
+                        .padding(.bottom, -60) // 하단으로 밀어서 일부가 잘리게
                     }
+                    .clipped()
                 }
             }
         }
-
-
     }
 }

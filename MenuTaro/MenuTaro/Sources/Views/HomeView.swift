@@ -30,7 +30,6 @@ struct HomeView: View {
                         .font(.system(size: 28, weight: .semibold, design: .default))
                         .padding(.trailing, 70)
                     
-                    // 기존 Circle 이미지 부분 그대로 두기
                     ZStack {
                         Circle()
                             .fill(
@@ -97,7 +96,6 @@ struct HomeView: View {
                 .padding(.bottom, 12)
 
                 
-                // 이하 "최근에 먹은 메뉴" 부분 그대로 유지
                 HStack {
                     Text("최근에 먹은 메뉴")
                         .foregroundColor(.white)
@@ -137,11 +135,6 @@ struct HomeView: View {
             }
         }
     }
-}
-
-extension Color {
-    static let myColor1 = Color("myColor1")
-    static let myColor2 = Color("myColor2")
 }
 
 

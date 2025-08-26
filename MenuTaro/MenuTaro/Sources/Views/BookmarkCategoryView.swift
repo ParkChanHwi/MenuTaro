@@ -19,7 +19,7 @@ struct BookmarkCategoryListView: View {
                 // 모든 메뉴 (전용 카드)
                 AllMenuCardView(
                     title: "모든 메뉴",
-                    imageName: "FoodCategory_TotalMenu",
+                    imageName: "FoodCategory_totalMenu",
                     count: viewModel.totalCount,
                     isActive: viewModel.totalCount > 0
                 )
