@@ -17,22 +17,32 @@ struct BookmarkCategoryListView: View {
         ScrollView {
             VStack(spacing: 12) {
                 // 모든 메뉴 (전용 카드)
-                AllMenuCardView(
-                    title: "모든 메뉴",
-                    imageName: "FoodCategory_totalMenu",
-                    count: viewModel.totalCount,
-                    isActive: viewModel.totalCount > 0
-                )
+                NavigationLink {
+                    BookmarkView(category: nil)
+                } label: {
+                    AllMenuCardView(
+                        title: "모든 메뉴",
+                        imageName: "FoodCategory_totalMenu",
+                        count: viewModel.totalCount,
+                        isActive: viewModel.totalCount > 0
+                    )
+                }.disabled(viewModel.totalCount == 0)
+
                 
                 // 일반 카테고리
                 ForEach(categories, id: \.self) { category in
                     let count = viewModel.categoryCounts[category] ?? 0
-                    CategoryCardView(
-                        title: category.rawValue,
-                        imageName: categoryImageName(category),
-                        count: count,
-                        isActive: count > 0
-                    )
+                    NavigationLink {
+                        BookmarkView(category: category)
+                    } label : {
+                        CategoryCardView(
+                            title: category.rawValue,
+                            imageName: categoryImageName(category),
+                            count: count,
+                            isActive: count > 0
+                        )
+                    }
+                    .disabled(count == 0)
                 }
             }
 
