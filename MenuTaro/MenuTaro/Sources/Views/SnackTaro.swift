@@ -62,7 +62,7 @@ struct InfiniteRow: View {
         
         HStack(spacing: spacing) {
             ForEach(0..<totalItems, id: \.self) { _ in
-                cookieCircle()
+                cookieCircle(width: 150, height: 150)
             }
         }
         .offset(x: xOffset)
@@ -101,9 +101,9 @@ struct InfiniteRow: View {
 }
 
 /// 쿠키 이미지가 들어간 원형 뷰
-func cookieCircle() -> some View {
+func cookieCircle(width: CGFloat, height: CGFloat) -> some View {
     Circle()
-        .frame(width: 150, height: 150)
+        .frame(width: width, height: height)
         .foregroundColor(.red)
         .overlay(
             Image("cookie_snack")
