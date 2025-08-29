@@ -40,7 +40,7 @@ struct InfiniteRow: View {
             
             // 타이머를 사용하여 오프셋을 직접 업데이트
             Timer.scheduledTimer(withTimeInterval: 0.016, repeats: true) { _ in
-                let delta = CGFloat(speed * 0.016)
+                let delta = CGFloat(speed * 0.02)
                 
                 switch direction {
                 case .left:

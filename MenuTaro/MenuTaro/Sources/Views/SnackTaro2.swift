@@ -11,7 +11,6 @@ struct SnackTaro2: View {
     @State private var navigateToSnackTaro3 = false
     
     var body: some View {
-        NavigationStack {
             VStack {
                 VStack {
                     Text("쿠키를 터치해서")
@@ -35,7 +34,6 @@ struct SnackTaro2: View {
             }
         }
     }
-}
 
 #Preview {
     SnackTaro2()
