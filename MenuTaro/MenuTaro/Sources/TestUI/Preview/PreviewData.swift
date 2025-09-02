@@ -89,23 +89,5 @@ struct PreviewData {
         snack: nil,
         user: sampleUser
     )
-    
-    //마이페이지용 프리뷰데이터 추가
-    static let sampleMypage1 = Mypage(
-            rank: 1,
-            food: sampleFoodKorean,
-            user: sampleUser
-        )
-        static let sampleMypage2 = Mypage(
-            rank: 2,
-            food: sampleFoodKorean2,
-            user: sampleUser
-        )
-        static let sampleMypage3 = Mypage(
-            rank: 3,
-            food: sampleFoodKorean3,
-            user: sampleUser
-        )
-
 }
 

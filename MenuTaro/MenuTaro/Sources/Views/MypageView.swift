@@ -8,7 +8,9 @@
 import SwiftUI
 import SwiftData
 
-private let hInset: CGFloat = 13
+private let hInset: CGFloat = 20
+private let cardSize: CGFloat = 140         // 카드 한 변
+private let rowHeight: CGFloat = 140 + 12
 
 struct MypageView: View {
     @Environment(\.modelContext) private var context
@@ -68,14 +70,19 @@ struct MypageView: View {
                             .foregroundColor(.white)
                         Spacer()
                     }
-                    
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 15) {
-                            ForEach(vm.menuTop3, id: \.mypageId) { mp in
-                                MypageCardView(mypage: mp)
+                    if vm.menuTop3.isEmpty {
+                        Text("타로카드를 뽑아 음식을 추가해보세요!")
+                            .frame(height: rowHeight)
+                    } else {
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 15) {
+                                ForEach(vm.menuTop3) { item in
+                                    MypageCardView(name: item.food.name, image: item.food.image)
+                                }
                             }
+                            .padding(.vertical, 6)
                         }
-                        .padding(.vertical, 6)
+                        .frame(height: rowHeight)
                     }
                     
                     HStack {
@@ -84,16 +91,20 @@ struct MypageView: View {
                             .foregroundColor(.white)
                         Spacer()
                     }
-                    
-                    ScrollView(.horizontal) {
-                        HStack(spacing: 15) {
-                            ForEach(vm.menuTop3, id: \.mypageId) { mp in
-                                MypageCardView(mypage: mp)
+                    if vm.snackTop3.isEmpty {
+                        Text("포춘쿠키를 뽑아 음식을 추가해보세요!")
+                            .frame(height: rowHeight)
+                    } else {
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 15) {
+                                ForEach(vm.snackTop3) { item in
+                                    MypageCardView(name: item.snack.name, image: item.snack.image)
+                                }
                             }
+                            .padding(.vertical, 6)
                         }
-                        .padding(.vertical, 6)
+                        .frame(height: rowHeight)
                     }
-                    
                     Spacer()
                 }
                 .padding(.horizontal, hInset)

@@ -43,6 +43,7 @@ struct AppView: View {
                         .toolbar {
                                     ToolbarItem(placement: .navigationBarTrailing) {
                                         Button {
+                                            print("설정 버튼 클릭됨")
                                             // 톱니바퀴 눌렀을 때 동작 추가(타이틀 옆)
                                         } label: {
                                             Image(systemName: "gearshape")

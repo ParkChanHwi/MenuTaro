@@ -17,9 +17,8 @@ class User {
     
     @Relationship var records: [ConsumptionRecord]
     @Relationship var bookmarks: [Bookmark]
-    @Relationship var mypages: [Mypage] //마이페이지 추가
 
-    init(userId: UUID = UUID(), nickname: String, profileImage:String,favoriteFood: FoodCard? = nil, favoriteSnack: Snack? = nil, records: [ConsumptionRecord] = [], bookmarks: [Bookmark] = [], mypages: [Mypage] = []) {
+    init(userId: UUID = UUID(), nickname: String, profileImage:String,favoriteFood: FoodCard? = nil, favoriteSnack: Snack? = nil, records: [ConsumptionRecord] = [], bookmarks: [Bookmark] = []) {
         self.userId = userId
         self.nickname = nickname
         self.profileImage = profileImage
@@ -27,6 +26,5 @@ class User {
         self.favoriteSnack = favoriteSnack
         self.records = records
         self.bookmarks = bookmarks
-        self.mypages = mypages //마이페이지 추가
     }
 }

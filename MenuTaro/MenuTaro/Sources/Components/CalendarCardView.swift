@@ -1,14 +1,13 @@
 //
-//  MypageCardView.swift
+//  CalendarCardView.swift
 //  MenuTaro
 //
-//  Created by 장현준 on 8/22/25.
+//  Created by 장현준 on 9/2/25.
 //
 
 import SwiftUI
 
-struct MypageCardView: View {
-    let name: String
+struct CalendarCardView: View {
     let image: String
     
     var body: some View {
@@ -16,7 +15,7 @@ struct MypageCardView: View {
             Image(image)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 140, height: 140)
+                .frame(width: 120, height: 120)
                 .clipped()
                 .cornerRadius(16)
             
@@ -36,29 +35,18 @@ struct MypageCardView: View {
                     )
                     .frame(height: 85)
             }
-            .frame(width: 140, height: 140)
+            .frame(width: 120, height: 120)
             .cornerRadius(16)
             
-            HStack {
-                Text(name)
-                    .font(.system(size: 18, weight: .medium))
-                    .foregroundColor(.white)
-                    .padding(.leading, 4)
-                    .lineLimit(1)
-                Spacer()
-            }
-            .padding(.trailing, 4)
-            .padding(.horizontal, 12)
-            .padding(.bottom, 12)
         }
-        .frame(width: 140, height: 140)
+        .frame(width: 120, height: 120)
         .shadow(color: .black.opacity(0.15), radius: 8, x: 0, y: 4)
     }
 }
 
 #Preview {
-    MypageCardView(
-        name: PreviewData.sampleFoodKorean.name,
+    CalendarCardView(
         image: PreviewData.sampleFoodKorean.image
     )
 }
+
