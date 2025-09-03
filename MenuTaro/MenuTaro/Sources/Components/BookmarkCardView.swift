@@ -6,13 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct BookmarkCardView: View {
     let bookmark: Bookmark
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Image(bookmark.food.image)
+            Image("TestBookmark")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 170, height: 170)
