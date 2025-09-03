@@ -33,46 +33,49 @@ struct AllMenuCardView: View {
     var body: some View {
         GradientCardView(width: width, height: height, isActive: isActive) {
             GeometryReader { geometry in
-                ZStack {
-                    // 상단 텍스트 영역
-                    VStack {
-                        HStack {
-                            Text(title)
-                                .font(.system(size: 20, weight: .semibold))
-                                .foregroundColor(.white)
-                            
-                            Spacer()
-                            
-                            Text("\(count)")
-                                .foregroundColor(.white)
-                                .font(.system(size: 18, weight: .bold))
-                            
-                            Image(systemName: "chevron.right")
-                                .foregroundColor(.white)
-                                .font(.system(size: 16))
-                        }
-                        .padding(.top, 16)
-                        .padding(.horizontal, 16)
-                        
-                        Spacer() // 텍스트를 상단에 고정
-                    }
+                ZStack(alignment: .top) {
                     
-                    // 이미지 영역 (하단에 배치하되 잘리도록)
+                    // 이미지: 카드 바닥에 붙이고, 위쪽 잘리게
                     VStack {
-                        Spacer()
-                        HStack {
-                            Image(imageName)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 1.2)
-                                .offset(x: -30) // 이미지만 왼쪽으로 30포인트 이동
-                            Spacer()
-                        }
-                        .padding(.bottom, -60) // 하단으로 밀어서 일부가 잘리게
+                        Spacer() // 바닥으로 밀기
+                        Image(imageName)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(
+                                width: geometry.size.width * 0.9,
+                                height: geometry.size.height * 1.2,
+                                alignment: .bottomLeading // 수정 부분
+                            )
+                            .offset(y: 30) // 수정 부분
                     }
-                    .clipped()
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .clipped() // 카드 영역 넘어가는 건 잘라냄
+                    
+                    // 상단 텍스트
+                    HStack {
+                        Text(title)
+                            .font(.system(size: 20, weight: .semibold))
+                            .foregroundColor(.white)
+                        
+                        Spacer()
+                        
+                        Text("\(count)")
+                            .foregroundColor(.white)
+                            .font(.system(size: 18, weight: .bold))
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.white)
+                            .font(.system(size: 16))
+                    }
+                    .padding(.top, 16)
+                    .padding(.horizontal, 16)
                 }
             }
         }
     }
+}
+
+#Preview {
+    BookmarkCategoryListView()
+        .modelContainer(makePreviewContainer())
 }
