@@ -21,6 +21,9 @@ struct FontTestView: View {
             
             Text("SFPro 강조한 폰트 텍스트입니다.")
                 .font(.system(size: 24, weight: .bold, design: .default))
+            
+            Text("SFPro 일반형 텍스트입니다.")
+                .font(.system(size: 14, weight: .medium, design: .default))
         }
         .padding()
     }
