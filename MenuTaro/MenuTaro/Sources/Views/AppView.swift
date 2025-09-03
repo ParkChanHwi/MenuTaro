@@ -15,7 +15,7 @@ struct AppView: View {
             
             TabView {
                 NavigationStack {
-                    BookmarkView()
+                    BookmarkCategoryListView()
                         .navigationTitle("북마크")
                         .navigationBarTitleDisplayMode(.inline)
                         .background(Color.clear) // 개별 뷰 배경 제거
