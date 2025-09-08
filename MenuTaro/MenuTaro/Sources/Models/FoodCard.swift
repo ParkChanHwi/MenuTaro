@@ -25,7 +25,7 @@ class FoodCard {
         self.image = image
     }
     
-    enum FoodCategory: String, Codable {
+    enum FoodCategory: String, Codable, CaseIterable {
         case korean = "한식"
         case chinese = "중식"
         case western = "양식"

@@ -91,3 +91,56 @@ struct PreviewData {
     )
 }
 
+extension PreviewData {
+    static let sampleFoodExtra = [
+        FoodCard(
+            foodId: UUID(),
+            name: "타코",
+            details: "티키타코",
+            category: .western,
+            image: "Taco"
+        ),
+        FoodCard(
+            foodId: UUID(),
+            name: "냉면",
+            details: "여름 별미",
+            category: .korean,
+            image: "TestBookmark"
+        ),
+        FoodCard(
+            foodId: UUID(),
+            name: "짜장면",
+            details: "춘장 소스",
+            category: .chinese,
+            image: "TestBookmark"
+        ),
+        FoodCard(
+            foodId: UUID(),
+            name: "짬뽕",
+            details: "얼큰 국물",
+            category: .chinese,
+            image: "TestBookmark"
+        ),
+        FoodCard(
+            foodId: UUID(),
+            name: "탕수육",
+            details: "찍먹/부먹",
+            category: .chinese,
+            image: "TestBookmark"
+        ),
+        FoodCard(
+            foodId: UUID(),
+            name: "우동",
+            details: "두꺼운 면",
+            category: .japanese,
+            image: "TestBookmark"
+        ),
+        FoodCard(
+            foodId: UUID(),
+            name: "회",
+            details: "신선한 생선",
+            category: .japanese,
+            image: "TestBookmark"
+        )
+    ]
+}
