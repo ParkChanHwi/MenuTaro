@@ -14,4 +14,9 @@ extension View {
             .ignoresSafeArea()
     }
     
+    func appBackground(_ color: Color) -> some View {
+        self
+            .background(color)
+            .ignoresSafeArea()
+    }
 }
