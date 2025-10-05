@@ -12,6 +12,7 @@ import SwiftData
 
 struct HomeView: View {
   
+    @EnvironmentObject private var router: Router
     @Query(sort: \Bookmark.createdAt, order: .reverse)
     private var bookmarks: [Bookmark]
     
@@ -79,21 +80,26 @@ struct HomeView: View {
                         .padding(.leading, 20)
                     }
                     
-                    GradientCardView(width: 358, height: 124) {
-                        HStack {
-                            Text("간식 포춘쿠키")
-                                .font(.system(size: 18, weight: .medium, design: .default))
-                                .foregroundColor(.white)
-                                .frame(width: 126, height: 22)
-                            
-                            Image("cookie_broken_home")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 202.52, height: 151.83)
+                    Button {
+                        router.push(.snackFortune(step: .selection))
+                    } label: {
+                        GradientCardView(width: 358, height: 124) {
+                            HStack {
+                                Text("간식 포춘쿠키")
+                                    .font(.system(size: 18, weight: .medium, design: .default))
+                                    .foregroundColor(.white)
+                                    .frame(width: 126, height: 22)
+                                
+                                Image("cookie_broken_home")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 202.52, height: 151.83)
+                            }
+                            .padding(.bottom, 12)
                         }
                     }
+                    .buttonStyle(.plain)
                 }
-                .padding(.bottom, 12)
 
                 
                 HStack {
@@ -134,6 +140,8 @@ struct HomeView: View {
                 }
             }
         }
+        .navigationTitle("홈")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -153,6 +161,7 @@ struct HomeView: View {
         container.mainContext.insert(bookmark)
 
         return HomeView()
+            .environmentObject(Router())
             .modelContainer(container)
     } catch {
         fatalError("Preview 실패: \(error.localizedDescription)")

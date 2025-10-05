@@ -7,9 +7,9 @@ struct MenuTaroAppApp: App {
     @StateObject private var router = Router()
     var body: some Scene {
         WindowGroup {
-            SnackTaro()
+            NavigationRootView()
+                .environmentObject(router)
                 .modelContainer(for: [User.self, Snack.self, FoodCard.self, ConsumptionRecord.self, Bookmark.self])
-                .preferredColorScheme(.dark)
         }
     }
 }

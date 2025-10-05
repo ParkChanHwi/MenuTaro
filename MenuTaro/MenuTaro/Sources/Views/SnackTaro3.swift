@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct SnackTaro3: View {
+    @EnvironmentObject private var router:Router
     @State private var text = "과연..!"
+    @State private var hasTriggeredNextStep = false
+    
     var body: some View {
         VStack {
             Text(text)
@@ -23,13 +26,27 @@ struct SnackTaro3: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 text = "빠직...빠드득...콰직.."
             }       }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                text = "뭐 나올끼니?"
-            }       }
+        .onAppear(perform: scheduleTextAndNavigation)
+    }
+    private func scheduleTextAndNavigation() {
+        guard !hasTriggeredNextStep else { return }
+        hasTriggeredNextStep = true
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            text = "빠직...빠드득...콰직.."
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            text = "뭐 나올끼니?"
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            router.push(.snackFortune(step: .result))
+        }
     }
 }
 
 #Preview {
     SnackTaro3()
+        .environmentObject(Router())
 }

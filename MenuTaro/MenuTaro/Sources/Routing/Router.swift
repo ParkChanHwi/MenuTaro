@@ -49,10 +49,23 @@ public final class Router: ObservableObject {
     
     public func pop(to route: AppRoute) {
         guard let index = path.lastIndex(of: route) else { return }
+        pop(to: index)
     }
     
     public func replace(with routes: [AppRoute]) {
         enqueue(.replace(routes))
+    }
+    
+    public func syncExternalPath(_ routes: [AppRoute]) {
+        guard path != routes else { return }
+        
+        var transaction = Transaction()
+        transaction.disablesAnimations = true
+        
+        withTransaction(transaction) {
+            path = routes
+        }
+        
     }
     
     public func select(tab: Tab) {
@@ -74,6 +87,7 @@ public final class Router: ObservableObject {
             await self.enqueue(command)
         }
     }
+
     
     /// 지정된 경로 식별자 배열로부터 경로를 복원합니다.
     public func restore(using identifiers: [AppRoute.Identifier]) {
@@ -100,6 +114,7 @@ public final class Router: ObservableObject {
             let command = pendingCommands.removeFirst()
             apply(command)
         }
+        isProcessingCommands = false
     }
     
     private func apply(_ command: NavigationCommand) {

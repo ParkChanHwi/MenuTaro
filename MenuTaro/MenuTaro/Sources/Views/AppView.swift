@@ -9,64 +9,45 @@ import SwiftUI
 import SwiftData
 
 struct AppView: View {
+    @EnvironmentObject private var router: Router
+    
     var body: some View {
-        ZStack {
-            Color.clear.appBackground()
-            
-            TabView {
-                NavigationStack {
-                    BookmarkCategoryListView()
-                        .navigationTitle("북마크")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .background(Color.clear) // 개별 뷰 배경 제거
-                }
+        TabView(selection: $router.selectedTab) {
+            BookmarkCategoryListView()
+                .tag(Router.Tab.bookmarks)
                 .tabItem {
                     Image(systemName: "bookmark")
                     Text("북마크").appFont(17)
                 }
-                
-                NavigationStack {
-                    HomeView()
-                        .navigationBarTitleDisplayMode(.inline)
-                        .background(Color.clear)
-                }
+                .navigationTitle("북마크")
+                .navigationBarTitleDisplayMode(.inline)
+            
+            HomeView()
+                .tag(Router.Tab.home)
                 .tabItem {
                     Image(systemName: "house")
                     Text("홈").appFont(17)
                 }
-                
-                NavigationStack {
-                    MypageView()
-                        .navigationTitle("마이페이지")
-                        .navigationBarTitleDisplayMode(.inline)
-                        .background(Color.clear)
-                        .toolbar {
-                                    ToolbarItem(placement: .navigationBarTrailing) {
-                                        Button {
-                                            print("설정 버튼 클릭됨")
-                                            // 톱니바퀴 눌렀을 때 동작 추가(타이틀 옆)
-                                        } label: {
-                                            Image(systemName: "gearshape")
-                                                .foregroundColor(.white)
-                                        }
-                                    }
-                                }
-                }
+                .navigationBarTitleDisplayMode(.inline)
+            
+            MypageView()
+                .tag(Router.Tab.mypage)
                 .tabItem {
                     Image(systemName: "person")
-                    Text("마이페이지").appFont(17)
+                    Text("마이페이지")
                 }
-            }
-            .accentColor(.primaryRed)
+                .navigationTitle("마이페이지")
+                .navigationBarTitleDisplayMode(.inline)
         }
-        .preferredColorScheme(.dark)
+        .tint(.primaryRed)
     }
 }
 
 
 #Preview {
-    AppView()
+    NavigationRootView()
         .modelContainer(makePreviewContainer())
+        .environmentObject(Router())
 //        .modelContainer(
 //            for: [User.self, Snack.self, FoodCard.self, ConsumptionRecord.self, Bookmark.self],
 //            inMemory: true
