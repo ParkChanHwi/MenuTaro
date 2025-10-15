@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MenuTaroSelectedView: View {
-    @Binding var droppedCard: FoodCard
+    @EnvironmentObject private var router: Router
+    let foodCard: FoodCard
     
     var body: some View {
         GeometryReader { geo in
@@ -26,7 +28,7 @@ struct MenuTaroSelectedView: View {
             
             VStack(spacing: spacing) {
                 // 선택된 음식 카드
-                CardFrontView(food: droppedCard)
+                CardFrontView(food: foodCard)
                     .frame(width: cardWidth)
                     .aspectRatio(cardRatio, contentMode: .fit)
                 
@@ -53,7 +55,7 @@ struct MenuTaroSelectedView: View {
                 
                 // 메인 CTA: 이 메뉴 먹을게요
                 Button {
-                    // execute: 확정 액션
+                    router.popToRoot()
                 } label: {
                     Text("이 메뉴 먹을게요")
                         .font(.system(size: max(16, w * 0.045), weight: .semibold))
@@ -65,7 +67,7 @@ struct MenuTaroSelectedView: View {
                 
                 // 다시 뽑을래요 (텍스트 버튼)
                 Button {
-                    // execute: 리롤/다시 뽑기
+                    router.pop()
                 } label: {
                     Text("다시 뽑을래요")
                         .font(.system(size: max(15, w * 0.042)))
@@ -79,19 +81,40 @@ struct MenuTaroSelectedView: View {
             .padding(.top, max(16, h * 0.04))
             .padding(.bottom, max(16, h * 0.04))
         }
+        .appBackgroundStyle(.gradient)
     }
 }
 
-private struct MenuTaroSelectedPreview: View {
-    @State private var card: FoodCard = PreviewData.sampleFoodKorean
+struct MenuTaroSelectedContainer: View {
+    @Query private var foodCards: [FoodCard]
+    
+    init(foodId: UUID) {
+        _foodCards = Query(filter: #Predicate {$0.foodId == foodId })
+    }
     var body: some View {
-        MenuTaroSelectedView(droppedCard: $card)
+        Group {
+            if let card = foodCards.first {
+                MenuTaroSelectedView(foodCard: card)
+            } else {
+                VStack(spacing: 12) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 32))
+                        .foregroundColor(.white)
+                    Text("선택한 메뉴를 찾을 수 없습니다.")
+                        .font(.system(size: 17, weight: .medium))
+                        .foregroundColor(.white)
+                    
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .appBackgroundStyle(.gradient)
+            }
+        }
     }
 }
 
 #Preview("MenuTaroSelectedView") {
-    MenuTaroSelectedPreview()
-        .modelContainer(makePreviewContainer())
+    MenuTaroSelectedContainer(foodId: PreviewData.sampleFoodKorean.foodId)
+        .environmentObject(Router())
         .padding()
         .background(Color(.systemBackground))
 }

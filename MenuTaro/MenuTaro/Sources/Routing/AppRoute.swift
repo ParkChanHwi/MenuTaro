@@ -14,6 +14,8 @@ import Foundation
 public enum AppRoute: Hashable {
     case bookmarkList(category: FoodCard.FoodCategory?)
     case snackFortune(step: SnackFortuneStep)
+    case menuTaro
+    case MenuTaroSelected(foodId: UUID)
 }
 
 public extension AppRoute {
@@ -36,6 +38,10 @@ public extension AppRoute {
             return Identifier(key: "bookmarkList", value: category?.rawValue)
         case let .snackFortune(step):
             return Identifier(key: "snackFortune", value: step.rawValue)
+        case .menuTaro:
+            return Identifier(key: "menuTaro")
+        case let .MenuTaroSelected(foodId):
+            return Identifier(key: "MenuTaroSelected", value: foodId.uuidString)
         }
     }
     
@@ -56,6 +62,16 @@ public extension AppRoute {
                 return nil
             }
             self = .snackFortune(step: step)
+            
+        case "menuTaro":
+            self = .menuTaro
+            
+        case "MenuTaroSelected":
+            guard let uuidString = identifier.value,
+                  let foodId = UUID(uuidString: uuidString) else {
+                return nil
+            }
+            self = .MenuTaroSelected(foodId: foodId)
         default :
             return nil
         }

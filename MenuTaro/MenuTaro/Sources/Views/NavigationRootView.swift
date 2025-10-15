@@ -25,6 +25,12 @@ struct NavigationRootView: View {
             }
         }
         .preferredColorScheme(.dark)
+        .onPreferenceChange(BackgroundStylePreferenceKey.self) { style in
+            guard bgStyle != style else { return }
+            withAnimation(.easeInOut) {
+                bgStyle = style
+            }
+        }
     }
     
     @ViewBuilder
@@ -36,6 +42,16 @@ struct NavigationRootView: View {
                 .navigationBarTitleDisplayMode(.inline)
         case let .snackFortune(step):
             snackFortuneDestination(for: step)
+        case .menuTaro:
+            MenuTaroView()
+                .navigationTitle("메뉴 타로")
+                .navigationBarTitleDisplayMode(.inline)
+                .environmentObject(router)
+        case let .MenuTaroSelected(foodId):
+            MenuTaroSelectedContainer(foodId: foodId)
+                .navigationTitle("메뉴 타로")
+                .navigationBarTitleDisplayMode(.inline)
+                .environmentObject(router)
         }
     }
     

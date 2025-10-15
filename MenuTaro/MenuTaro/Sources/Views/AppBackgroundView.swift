@@ -18,7 +18,7 @@ struct AppBackgroundView: View {
         Group {
             switch style {
             case .black:
-                Color.black.ignoresSafeArea()
+                Color.black.ignoresSafeArea()	
             case .gradient:
                 LinearGradient (colors: [Color.black, Color("primaryRed").opacity(0.85)], startPoint: .top, endPoint: .bottom).ignoresSafeArea(.all)
             }

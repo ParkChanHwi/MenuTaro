@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-private struct BackgroundStylePreferenceKey: PreferenceKey {
-    static var defaultValue: AppBackgroundView.Style = .gradient
+struct BackgroundStylePreferenceKey: PreferenceKey {
+    static var defaultValue: AppBackgroundView.Style = .black
     static func reduce(value: inout AppBackgroundView.Style, nextValue: () -> AppBackgroundView.Style) {
         value = nextValue() // 여러 값이 들어왔을 때 마지막 값에 우선순위를 줌
     }

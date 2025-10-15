@@ -1,116 +1,137 @@
-//
-//  HomeView.swift
-//  MenuTaro
-//
-//  Created by 박찬휘 on 8/13/25.
-//
-
 import SwiftUI
 import SwiftData
 
-// HomeView.swift
-
 struct HomeView: View {
-  
     @EnvironmentObject private var router: Router
     @Query(sort: \Bookmark.createdAt, order: .reverse)
     private var bookmarks: [Bookmark]
-    
+
     var body: some View {
-        ZStack{
-            VStack {
-                Image(systemName: "bell.fill")
-                    .foregroundColor(.white)
-                    .frame(width: 24, height: 22)
-                    .padding(.bottom, 62)
-                    .padding(.leading, 362)
-                
+        GeometryReader { geo in
+            let w = geo.size.width
+            let h = geo.size.height
+
+            // 비율 상수
+            let sidePadding = w * 0.051
+            let bellSize = min(w * 0.062, 24)
+            let heroCircle = w * 0.41
+            let heroBubbleW = w * 0.254
+            let heroBubbleH = w * 0.092
+            let heroBubbleOffsetY = -heroCircle * 0.425
+            let heroSectionSpacing = h * 0.02
+            let gradientCardW = w * 0.918
+            let gradientCardH = gradientCardW * (124.0/358.0)
+            let gradientInternalLeading = w * 0.051
+            let sectionHeaderTop = h * 0.02
+            let recentHSpacing = w * 0.046
+
+            VStack(alignment: .leading, spacing: 0) {
+
                 HStack {
+                    Spacer()
+                    Image(systemName: "bell.fill")
+                        .foregroundColor(.white)
+                        .frame(width: bellSize, height: bellSize)
+                }
+                .padding(.trailing, sidePadding)
+
+                // 히어로
+                HStack(alignment: .center, spacing: w * 0.04) {
                     Text("안녕!\n오늘은 뭘\n먹어볼까?")
                         .foregroundColor(.white)
-                        .font(.system(size: 28, weight: .semibold, design: .default))
-                        .padding(.trailing, 70)
-                    
+                        .font(.system(size: 28, weight: .semibold))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
                     ZStack {
                         Circle()
                             .fill(
                                 LinearGradient(
-                                    gradient: Gradient(colors: [
+                                    colors: [
                                         Color(red: 33/255, green: 33/255, blue: 33/255),
                                         Color(red: 255/255, green: 73/255, blue: 35/255)
-                                    ]),
+                                    ],
                                     startPoint: .top, endPoint: .bottom
                                 )
                             )
-                            .frame(width: 160, height: 160)
-                            .cornerRadius(100)
-                        
+                            .frame(width: heroCircle, height: heroCircle)
+
                         Image("chicken")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 159.26, height: 160)
+                            .frame(width: heroCircle * 0.996, height: heroCircle)
                             .clipShape(Circle())
-                        
+
                         RoundedRectangle(cornerRadius: 18)
                             .fill(.red)
-                            .frame(width: 99, height: 36)
+                            .frame(width: heroBubbleW, height: heroBubbleH)
                             .overlay(
                                 Text("머먹을래?")
                                     .foregroundColor(.glassShadowBlack10)
-                                    .font(.system(size: 18, weight: .medium, design: .default))
-                                    .lineSpacing(20)
+                                    .font(.system(size: 18, weight: .medium))
                             )
-                            .offset(y: -68)
+                            .offset(y: heroBubbleOffsetY)
                     }
+                    .frame(width: heroCircle, height: heroCircle)
                 }
-                
-                VStack(spacing : 8) {
-                    GradientCardView(width: 358, height: 124) {
-                        HStack {
-                            Text("데일리 메뉴 타로")
-                                .font(.system(size: 18, weight: .medium, design: .default))
-                                .foregroundColor(.white)
-                                .frame(width: 126, height: 22)
-                            
-                            Image("card_home")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 202.52, height: 151.83)
+                .padding(.horizontal, sidePadding)
+                .padding(.top, heroSectionSpacing)
+
+                // 기능 카드
+                VStack(spacing: h * 0.012) {
+                    Button {
+                        router.push(.menuTaro)
+                    } label: {
+                        GradientCardView(width: gradientCardW, height: gradientCardH) {
+                            HStack {
+                                Text("데일리 메뉴 타로")
+                                    .font(.system(size: 18, weight: .medium))
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                                Image("card_home")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: gradientCardW * 0.565, height: gradientCardH * 1.225)
+                            }
+                            .padding(.leading, gradientInternalLeading)
                         }
-                        .padding(.leading, 20)
                     }
-                    
+                    .buttonStyle(.plain)
+
                     Button {
                         router.push(.snackFortune(step: .selection))
                     } label: {
-                        GradientCardView(width: 358, height: 124) {
+                        GradientCardView(width: gradientCardW, height: gradientCardH) {
                             HStack {
                                 Text("간식 포춘쿠키")
-                                    .font(.system(size: 18, weight: .medium, design: .default))
+                                    .font(.system(size: 18, weight: .medium))
                                     .foregroundColor(.white)
-                                    .frame(width: 126, height: 22)
-                                
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+
                                 Image("cookie_broken_home")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 202.52, height: 151.83)
+                                    .frame(width: gradientCardW * 0.565, height: gradientCardH * 1.225)
                             }
-                            .padding(.bottom, 12)
+                            .padding(.leading, gradientInternalLeading)
+                            .padding(.bottom, gradientCardH * 0.097)
                         }
                     }
                     .buttonStyle(.plain)
                 }
+                .frame(maxWidth: .infinity)
+                .padding(.top, h * 0.016)
+                .padding(.horizontal, (w - gradientCardW) / 2)
 
-                
+                // 섹션 헤더
                 HStack {
                     Text("최근에 먹은 메뉴")
                         .foregroundColor(.white)
-                        .font(.system(size: 18, weight: .medium, design: .default))
-                        .padding(.trailing, 177)
-                    
-                    Button(action: {
-                        print("전체보기 버튼 클릭됨")
-                    }) {
+                        .font(.system(size: 18, weight: .medium))
+
+                    Spacer()
+
+                    Button(action: { print("전체보기 버튼 클릭됨") }) {
                         HStack(spacing: 5) {
                             Text("전체보기")
                             Image(systemName: "chevron.right")
@@ -122,29 +143,37 @@ struct HomeView: View {
                     }
                     .buttonStyle(.plain)
                 }
-                .padding(.horizontal, 20)
-                
+                .padding(.top, sectionHeaderTop)
+                .padding(.horizontal, sidePadding)
+
+                // 북마크 영역 (생략 가능)
                 if bookmarks.isEmpty {
                     Text("아직 북마크 X")
                         .foregroundColor(.gray)
-                        .padding(.top, 8)
+                        .padding(.top, h * 0.01)
+                        .padding(.horizontal, sidePadding)
                 } else {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 18) {
+                        HStack(spacing: recentHSpacing) {
                             ForEach(bookmarks.prefix(5), id: \.persistentModelID) { bookmark in
                                 BookmarkCardView(bookmark: bookmark)
                             }
                         }
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, sidePadding)
+                        .padding(.vertical, h * 0.012)
                     }
                 }
+
+                Spacer(minLength: 0)
             }
+            // ✅ 핵심: 상단 safe area 존중
+            .safeAreaPadding(.top)
         }
         .navigationTitle("홈")
         .navigationBarTitleDisplayMode(.inline)
+        // 배경/ignoresSafeArea 관련 수정 없음(상위에서 결정)
     }
 }
-
 
 
 #Preview {
