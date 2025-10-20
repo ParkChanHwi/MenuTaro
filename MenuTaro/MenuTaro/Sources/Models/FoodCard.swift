@@ -9,7 +9,7 @@ import SwiftData
 
 
 @Model
-class FoodCard {
+public class FoodCard {
     @Attribute(.unique) var foodId: UUID
     var name: String
     var details: String
@@ -17,7 +17,7 @@ class FoodCard {
     var image: String
     
     
-    init(foodId: UUID, name: String, details: String, category: FoodCategory, image: String) {
+    public init(foodId: UUID, name: String, details: String, category: FoodCategory, image: String) {
         self.foodId = foodId
         self.name = name
         self.details = details
@@ -25,7 +25,7 @@ class FoodCard {
         self.image = image
     }
     
-    enum FoodCategory: String, Codable {
+    public enum FoodCategory: String, Codable, CaseIterable {
         case korean = "한식"
         case chinese = "중식"
         case western = "양식"

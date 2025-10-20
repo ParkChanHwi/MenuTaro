@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BookmarkCategoryListView: View {
     @Environment(\.modelContext) private var context
+    @EnvironmentObject private var router: Router
     @StateObject private var viewModel = BookmarkCategoryViewModel()
     
     let categories: [FoodCard.FoodCategory] = [.korean, .japanese, .chinese, .western, .etc]
@@ -17,8 +18,8 @@ struct BookmarkCategoryListView: View {
         ScrollView {
             VStack(spacing: 12) {
                 // 모든 메뉴 (전용 카드)
-                NavigationLink {
-                    BookmarkView(category: nil)
+                Button{
+                    router.push(.bookmarkList( category: nil))
                 } label: {
                     AllMenuCardView(
                         title: "모든 메뉴",
@@ -26,14 +27,16 @@ struct BookmarkCategoryListView: View {
                         count: viewModel.totalCount,
                         isActive: viewModel.totalCount > 0
                     )
-                }.disabled(viewModel.totalCount == 0)
+                }
+                .buttonStyle(.plain)
+                .disabled(viewModel.totalCount == 0)
 
                 
                 // 일반 카테고리
                 ForEach(categories, id: \.self) { category in
                     let count = viewModel.categoryCounts[category] ?? 0
-                    NavigationLink {
-                        BookmarkView(category: category)
+                    Button{
+                        router.push(.bookmarkList( category: category))
                     } label : {
                         CategoryCardView(
                             title: category.rawValue,
@@ -42,6 +45,7 @@ struct BookmarkCategoryListView: View {
                             isActive: count > 0
                         )
                     }
+                    .buttonStyle(.plain)
                     .disabled(count == 0)
                 }
             }
@@ -67,5 +71,6 @@ struct BookmarkCategoryListView: View {
 
 #Preview {
     BookmarkCategoryListView()
+        .environmentObject(Router())
         .modelContainer(makePreviewContainer())
 }

@@ -27,7 +27,7 @@ func makePreviewContainer() -> ModelContainer {
         PreviewData.sampleFoodJapanese2,
         PreviewData.sampleFoodJapanese3,
         
-    ]
+    ] + PreviewData.sampleFoodExtra
     
     for food in foods {
         context.insert(food)
