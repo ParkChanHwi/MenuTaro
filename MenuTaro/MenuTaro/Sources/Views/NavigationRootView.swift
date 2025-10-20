@@ -8,9 +8,6 @@
 import SwiftUI
 import SwiftData
 
-import SwiftUI
-import SwiftData
-
 struct NavigationRootView: View {
     @EnvironmentObject private var router: Router
     @Environment(\.modelContext) private var modelContext
@@ -18,17 +15,20 @@ struct NavigationRootView: View {
     @State private var didSeedInitialData = false
 
     var body: some View {
-        NavigationStack(path: Binding(
-            get: { router.path },
-            set: { router.replace(with: $0) }   
-        )) {
-            AppView()
-                .environmentObject(router)
-                .navigationDestination(for: AppRoute.self) { route in
-                    destination(for: route)
-                }
+        ZStack {
+            AppBackgroundView(style: bgStyle)
+
+            NavigationStack(path: Binding(
+                get: { router.path },
+                set: { router.replace(with: $0) }
+            )) {
+                AppView()
+                    .environmentObject(router)
+                    .navigationDestination(for: AppRoute.self) { route in
+                        destination(for: route)
+                    }
+            }
         }
-        .background { AppBackgroundView(style: bgStyle) }
         .onPreferenceChange(BackgroundStylePreferenceKey.self) { style in
             guard bgStyle != style else { return }
             withAnimation(.easeInOut) { bgStyle = style }
