@@ -62,3 +62,7 @@ Package.resolved
 *.log
 .idea/
 *.iml
+
+# Ignore accidentally committed SSH private/public keys
+MenuTaro/iDNpwC8ACANnio7LhTMXSSfVnTOI6w4IjOS7oiEVJUk
+MenuTaro/iDNpwC8ACANnio7LhTMXSSfVnTOI6w4IjOS7oiEVJUk.pub
