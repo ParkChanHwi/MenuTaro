@@ -18,7 +18,7 @@ struct SnackTaro: View {
         VStack {
             VStack {
                 Text("포춘 쿠키")
-                    .foregroundColor(.red)
+                    .foregroundColor(.primaryRed)
                 + Text("를 하나")
                 Text("선택해주세요!")
             }
@@ -54,7 +54,7 @@ struct SnackTaro: View {
 func cookieCircle(imageName: String, width: CGFloat, height: CGFloat) -> some View {
     Circle()
         .frame(width: width, height: height)
-        .foregroundColor(.red)
+        .foregroundColor(.primaryRed)
         .overlay(
             Image(imageName)
                 .resizable()
