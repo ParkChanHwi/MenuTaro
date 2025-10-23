@@ -42,12 +42,16 @@ struct MypageView: View {
                     .background(Color.white.opacity(0.15))
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     
-                    Text("프로필 편집")
-                        .font(.system(size: 16, weight: .semibold, design: .default))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity, minHeight: 47)
-                        .background(Color(red: 1, green: 0.29, blue: 0.14))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    Button(action: {
+                        print("프로필 편집 버튼 눌림")
+                    }, label: {
+                        Text("프로필 편집")
+                            .font(.system(size: 16, weight: .semibold, design: .default))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity, minHeight: 47)
+                            .background(Color(red: 1, green: 0.29, blue: 0.14))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    })
                     
                     HStack {
                         Text("7월 랭킹")
