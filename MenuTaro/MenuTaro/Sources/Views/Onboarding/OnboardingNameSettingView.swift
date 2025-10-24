@@ -26,7 +26,16 @@ struct OnboardingNameSettingView: View {
                     .padding(.leading, proxy.size.width * 0.1)
                 
                 PillTextField(text: $name)
-                    .padding(.horizontal, proxy.size.width * 0.08) // 양쪽에 15% 여백 주기
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 32)
+
+                Button("다음") {
+                    
+                }
+                .appFont(20, weight: .bold)
+                .buttonStyle(OrangeButtonStyle())
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 24)
             }
         }
         .background(Color.black)
