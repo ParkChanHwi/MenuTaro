@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct MenuTaroLayoutMetrics {
+    static let profileImageScale: CGFloat = 0.996
     let cardWidth: CGFloat
     let cardAspectRatio: CGFloat
     let componentSpacing: CGFloat
