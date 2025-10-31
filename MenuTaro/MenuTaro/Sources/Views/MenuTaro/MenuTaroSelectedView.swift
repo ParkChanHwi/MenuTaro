@@ -11,28 +11,16 @@ import SwiftData
 struct MenuTaroSelectedView: View {
     @EnvironmentObject private var router: Router
     let foodCard: FoodCard
-    
+
     var body: some View {
         GeometryReader { geo in
-            let w = geo.size.width
-            let h = geo.size.height
-            
-            // 레이아웃 스케일링 파라미터
-            let cardWidth   = min(w * 0.78, 360)               // 카드 최대 폭 제한
-            let cardRatio   = 0.62                              // 카드 가로/세로 비율 (필요시 조정)
-            let spacing     = max(16, w * 0.06)                 // 컴포넌트 간 간격
-            let pillHeight  = max(41, w * 0.11)                 // 북마크 버튼 높이
-            let pillWidth   = min(w * 0.56, 220)                // 북마크 버튼 폭
-            let ctaHeight   = max(56, w * 0.14)                 // 메인 CTA 높이
-            let sidePadding = max(20, w * 0.08)                 // 좌우 패딩
-            
-            VStack(spacing: spacing) {
-                // 선택된 음식 카드
+            let metrics = MenuTaroLayoutMetrics.metrics(for: geo.size)
+
+            VStack(spacing: metrics.componentSpacing) {
                 CardFrontView(food: foodCard)
-                    .frame(width: cardWidth)
-                    .aspectRatio(cardRatio, contentMode: .fit)
-                
-                // 북마크(알약) 버튼
+                    .frame(width: metrics.cardWidth)
+                    .aspectRatio(metrics.cardAspectRatio, contentMode: .fit)
+
                 Button {
                     // execute: 북마크 토글 등
                 } label: {
@@ -40,9 +28,9 @@ struct MenuTaroSelectedView: View {
                         Text("이 메뉴카드 저장")
                         Image(systemName: "bookmark")
                     }
-                    .font(.system(size: max(14, w * 0.04), weight: .medium))
+                    .font(.system(size: metrics.bookmarkFontSize, weight: .medium))
                     .foregroundColor(Color("buttonOrange"))
-                    .frame(width: pillWidth, height: pillHeight)
+                    .frame(width: metrics.bookmarkPillSize.width, height: metrics.bookmarkPillSize.height)
                     .background(
                         Capsule()
                             .fill(Color.clear)
@@ -52,34 +40,31 @@ struct MenuTaroSelectedView: View {
                             .stroke(Color("buttonOrange"), lineWidth: 1)
                     )
                 }
-                
-                // 메인 CTA: 이 메뉴 먹을게요
+
                 Button {
                     router.popToRoot()
                 } label: {
                     Text("이 메뉴 먹을게요")
-                        .font(.system(size: max(16, w * 0.045), weight: .semibold))
-                        .frame(maxWidth: cardWidth, minHeight: ctaHeight)
+                        .font(.system(size: metrics.callToActionFontSize, weight: .semibold))
+                        .frame(height: metrics.callToActionHeight)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(Color("buttonOrange"))
-                .clipShape(RoundedRectangle(cornerRadius: max(14, ctaHeight/3), style: .continuous))
-                
-                // 다시 뽑을래요 (텍스트 버튼)
+                .buttonStyle(OrangeButtonStyle())
+                .frame(maxWidth: metrics.cardWidth)
+
                 Button {
                     router.pop()
                 } label: {
                     Text("다시 뽑을래요")
-                        .font(.system(size: max(15, w * 0.042)))
+                        .font(.system(size: max(15, geo.size.width * 0.042)))
                         .foregroundColor(Color("buttonGrey"))
                 }
-                
-                Spacer(minLength: h * 0.06)
+
+                Spacer(minLength: metrics.bottomSpacer)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.horizontal, sidePadding)
-            .padding(.top, max(16, h * 0.04))
-            .padding(.bottom, max(16, h * 0.04))
+            .padding(.horizontal, metrics.horizontalPadding)
+            .padding(.top, metrics.verticalPadding)
+            .padding(.bottom, metrics.verticalPadding)
         }
         .appBackgroundStyle(.gradient)
     }
@@ -87,9 +72,9 @@ struct MenuTaroSelectedView: View {
 
 struct MenuTaroSelectedContainer: View {
     @Query private var foodCards: [FoodCard]
-    
+
     init(foodId: UUID) {
-        _foodCards = Query(filter: #Predicate {$0.foodId == foodId })
+        _foodCards = Query(filter: #Predicate { $0.foodId == foodId })
     }
     var body: some View {
         Group {
@@ -103,7 +88,7 @@ struct MenuTaroSelectedContainer: View {
                     Text("선택한 메뉴를 찾을 수 없습니다.")
                         .font(.system(size: 17, weight: .medium))
                         .foregroundColor(.white)
-                    
+
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .appBackgroundStyle(.gradient)

@@ -35,7 +35,7 @@ struct HomeView: View {
                 }
                 .padding(.trailing, sidePadding)
 
-                // 히어로
+                
                 HStack(alignment: .center, spacing: w * 0.04) {
                     Text("안녕!\n오늘은 뭘\n먹어볼까?")
                         .foregroundColor(.white)
@@ -43,23 +43,11 @@ struct HomeView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     ZStack {
-                        Circle()
-                            .fill(
-                                LinearGradient(
-                                    colors: [
-                                        Color(red: 33/255, green: 33/255, blue: 33/255),
-                                        Color(red: 255/255, green: 73/255, blue: 35/255)
-                                    ],
-                                    startPoint: .top, endPoint: .bottom
-                                )
-                            )
-                            .frame(width: heroCircle, height: heroCircle)
-
-                        Image("chicken")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: heroCircle * 0.996, height: heroCircle)
-                            .clipShape(Circle())
+                        ProfileCharacterAvatar(
+                            imageName: "chicken",
+                            diameter: heroCircle,
+                            backgroundStyle: ProfileCharacterAvatar.defaultSelectedBackground
+                        )
 
                         RoundedRectangle(cornerRadius: 18)
                             .fill(.red)
@@ -146,7 +134,7 @@ struct HomeView: View {
                 .padding(.top, sectionHeaderTop)
                 .padding(.horizontal, sidePadding)
 
-                // 북마크 영역 (생략 가능)
+                // 북마크 영역
                 if bookmarks.isEmpty {
                     Text("아직 북마크 X")
                         .foregroundColor(.gray)
@@ -166,7 +154,6 @@ struct HomeView: View {
 
                 Spacer(minLength: 0)
             }
-            // ✅ 핵심: 상단 safe area 존중
             .safeAreaPadding(.top)
         }
         .navigationTitle("홈")
