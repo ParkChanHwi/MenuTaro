@@ -17,6 +17,7 @@ struct BookmarkCategoryListView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 12) {
+                customTopbar(title: "북마크")
                 // 모든 메뉴 (전용 카드)
                 Button{
                     router.push(.bookmarkList( category: nil))
