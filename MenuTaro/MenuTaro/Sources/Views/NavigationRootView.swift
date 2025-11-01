@@ -13,6 +13,7 @@ struct NavigationRootView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var bgStyle: AppBackgroundView.Style = .black
     @State private var didSeedInitialData = false
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
         ZStack {
@@ -67,22 +68,22 @@ struct NavigationRootView: View {
         switch step {
         case .selection:
             SnackTaro()
-                .navigationTitle("포춘 쿠키")
-                .navigationBarTitleDisplayMode(.inline)
+                .customToolbar(title: "포춘 쿠키") {
+                    presentationMode.wrappedValue.dismiss()
+                }
         case .opening:
             SnackTaro2()
-                .navigationTitle("포춘 쿠키")
-                .navigationBarTitleDisplayMode(.inline)
+                .customToolbar(title: "포춘 쿠키") {
+                    presentationMode.wrappedValue.dismiss()
+                }
         case .reveal:
             SnackTaro3()
-                .navigationBarBackButtonHidden()
-                .navigationTitle("포춘 쿠키")
-                .navigationBarTitleDisplayMode(.inline)
+                .customToolbar(title: "포춘 쿠키", showBackButton: false) {
+                }
         case .result:
             SnackTaro4()
-                .navigationBarBackButtonHidden()
-                .navigationTitle("포춘 쿠키")
-                .navigationBarTitleDisplayMode(.inline)
+                .customToolbar(title: "포춘 쿠키", showBackButton: false) {
+                }
         }
     }
 }
