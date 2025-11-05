@@ -5,6 +5,25 @@ struct HomeView: View {
     @EnvironmentObject private var router: Router
     @Query(sort: \Bookmark.createdAt, order: .reverse)
     private var bookmarks: [Bookmark]
+    @Query private var users: [User]
+
+    init() {
+        var descriptor = FetchDescriptor<User>()
+        descriptor.fetchLimit = 1
+        _users = Query(descriptor)
+    }
+
+    private var currentUser: User? {
+        users.first
+    }
+
+    private var greetingText: String {
+        if let nickname = currentUser?.nickname, !nickname.isEmpty {
+            return "안녕, \(nickname)!\n오늘은 뭘\n먹어볼까?"
+        } else {
+            return "안녕!\n오늘은 뭘\n먹어볼까?"
+        }
+    }
 
     var body: some View {
         GeometryReader { geo in
@@ -35,16 +54,16 @@ struct HomeView: View {
                 }
                 .padding(.trailing, sidePadding)
 
-                
+
                 HStack(alignment: .center, spacing: w * 0.04) {
-                    Text("안녕!\n오늘은 뭘\n먹어볼까?")
+                    Text(greetingText)
                         .foregroundColor(.white)
                         .font(.system(size: 28, weight: .semibold))
                         .frame(maxWidth: .infinity, alignment: .leading)
 
                     ZStack {
                         ProfileCharacterAvatar(
-                            imageName: "chicken",
+                            imageName: currentUser?.profileImage ?? "chicken",
                             diameter: heroCircle,
                             backgroundStyle: ProfileCharacterAvatar.defaultSelectedBackground
                         )
@@ -62,7 +81,6 @@ struct HomeView: View {
                     .frame(width: heroCircle, height: heroCircle)
                 }
                 .padding(.horizontal, sidePadding)
-                .padding(.top, heroSectionSpacing)
 
                 // 기능 카드
                 VStack(spacing: h * 0.012) {
