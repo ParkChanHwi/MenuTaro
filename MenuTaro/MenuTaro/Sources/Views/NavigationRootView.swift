@@ -13,6 +13,9 @@ struct NavigationRootView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var bgStyle: AppBackgroundView.Style = .black
     @State private var didSeedInitialData = false
+    @StateObject private var onboarding = OnboardingFlowViewModel()
+    @AppStorage("hasOnboarded") private var hasOnboarded = false
+    @State private var didTriggerOnboarding = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
     var body: some View {
@@ -25,6 +28,7 @@ struct NavigationRootView: View {
             )) {
                 AppView()
                     .environmentObject(router)
+                    .environmentObject(onboarding)
                     .navigationDestination(for: AppRoute.self) { route in
                         destination(for: route)
                     }
@@ -35,6 +39,14 @@ struct NavigationRootView: View {
             withAnimation(.easeInOut) { bgStyle = style }
         }
         .onAppear(perform: seedInitialDataIfNeeded)
+        .onAppear(perform: showOnboardingIfNeeded)
+        .onChange(of: hasOnboarded) { _, newValue in
+            if newValue {
+                didTriggerOnboarding = false
+            } else {
+                showOnboardingIfNeeded()
+            }
+        }
         .preferredColorScheme(.dark)
     }
 
@@ -54,6 +66,13 @@ struct NavigationRootView: View {
                 .navigationTitle("메뉴 타로")
                 .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+            
+        case let .onboarding(step):
+            onboardingDestination(for: step)
+                .navigationBarBackButtonHidden()
+        case .mypageEdit:
+            MypageEditView()
+                .environmentObject(router)
 
         case let .MenuTaroSelected(foodId):
             MenuTaroSelectedContainer(foodId: foodId)
@@ -63,6 +82,24 @@ struct NavigationRootView: View {
         }
     }
 
+    @ViewBuilder
+    private func onboardingDestination(for step: OnboardingStep) -> some View {
+        switch step {
+        case .name:
+            OnboardingNameSettingView()
+                .environmentObject(router)
+                .environmentObject(onboarding)
+        case .profile:
+            OnboardingProfileCharacter()
+                .environmentObject(router)
+                .environmentObject(onboarding)
+        case .terms:
+            OnboardingTermsView()
+                .environmentObject(router)
+                .environmentObject(onboarding)
+        }
+    }
+    
     @ViewBuilder
     private func snackFortuneDestination(for step: SnackFortuneStep) -> some View {
         switch step {
@@ -110,6 +147,15 @@ extension NavigationRootView {
             print("Failed to seed initial data: \(error)")
             #endif
         }
+    }
+    
+    
+    private func showOnboardingIfNeeded() {
+        guard !hasOnboarded, !didTriggerOnboarding else { return }
+        didTriggerOnboarding = true
+        onboarding.reset()
+        onboarding.preloadExistingUser(from: modelContext)
+        router.replace(with: [.onboarding(step: .name)])
     }
 }
 
