@@ -34,14 +34,25 @@ final class MypageViewModel: ObservableObject {
         fetchSnackTop3()
     }
     
-    func fetchMenuTop3(limit: Int = 10, for user: User? = nil) {
+    func fetchMenuTop3(limit: Int = 10, since: Date? = nil, for user: User? = nil) {
         guard let context else { return }
         do {
             var desc = FetchDescriptor<ConsumptionRecord>()
             
-            if let u = user {
+            if let u = user, let s = since {
                 let uid = u.userId
-                desc.predicate = #Predicate { $0.user.userId == uid }
+                desc.predicate = #Predicate { rec in
+                    rec.user.userId == uid && rec.timestamp >= s
+                }
+            } else if let u = user {
+                let uid = u.userId
+                desc.predicate = #Predicate { rec in
+                    rec.user.userId == uid
+                }
+            } else if let s = since {
+                desc.predicate = #Predicate { rec in
+                    rec.timestamp >= s
+                }
             }
             
             let records = try context.fetch(desc)
@@ -56,7 +67,7 @@ final class MypageViewModel: ObservableObject {
         }
     }
     
-    func fetchSnackTop3(limit: Int = 3, for user: User? = nil) {
+    func fetchSnackTop3(limit: Int = 3, since: Date? = nil, for user: User? = nil) {
             guard let context else { return }
             do {
                 var desc = FetchDescriptor<ConsumptionRecord>()
@@ -80,8 +91,10 @@ final class MypageViewModel: ObservableObject {
             }
         }
 
-    func refresh(for user: User? = nil) {
-        fetchMenuTop3(for: user)
-        fetchSnackTop3(for: user)
+    func refresh(for user: User? = nil, menuLimit: Int = 10,
+                 snackLimit: Int = 10,
+                 since: Date? = nil) {
+        fetchMenuTop3(limit: menuLimit, since: since, for: user)
+        fetchSnackTop3(limit: snackLimit, since: since, for: user)
     }
 }

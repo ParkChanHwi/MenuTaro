@@ -120,6 +120,18 @@ func makePreviewContainer() -> ModelContainer {
         )
     )
     
+    let foodsForRanking = Array(foods.prefix(10))   // 앞에서 10개 선택
+    for (i, food) in foodsForRanking.enumerated() {
+        let rec = ConsumptionRecord(
+            recordId: UUID(),
+            timestamp: dateBy(dayOffset: -i, hour: 12),   // 날짜를 조금씩 다르게
+            food: food,
+            snack: nil,
+            user: PreviewData.sampleUser
+        )
+        context.insert(rec)
+    }
+    
     try! context.save()
     return container
 }
