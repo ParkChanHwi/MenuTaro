@@ -26,35 +26,25 @@ struct OnboardingProfileCharacter: View {
                     Text("2/3")
                         .font(.system(.subheadline, weight: .bold))
                         .foregroundColor(.primaryRed)
+                        .padding(.horizontal, metrics.horizontalPadding)
 
                     Text("프로필 캐릭터를\n선택해주세요.")
                         .font(.system(.title, weight: .bold))
                         .foregroundColor(.white)
+                        .padding(.horizontal, metrics.horizontalPadding)
 
                     Text("*캐릭터는 언제든지 바꿀 수 있어요!")
                         .font(.system(.caption, weight: .regular))
                         .foregroundColor(.white)
-
-                    LazyVGrid(columns: columns, alignment: .center, spacing: gridSpacing) {
-                        ForEach(viewModel.characters, id: \.self) { character in
-                            let backgroundStyle = viewModel.backgroundStyle(for: character)
-
-                            Button {
-                                viewModel.toggleSelection(for: character)
-                            } label: {
-                                ProfileCharacterAvatar(
-                                    imageName: character,
-                                    diameter: avatarDiameter,
-                                    backgroundStyle: backgroundStyle
-                                )
-                                .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
+                        .padding(.horizontal, metrics.horizontalPadding)
+                    
+                    ProfileCharacterGrid(viewModel: viewModel)
+                        .frame(minHeight: proxy.size.height * 0.35)
+                        .padding(.bottom, metrics.callToActionHeight + metrics.orangeButtonBottomInset)
+                        .padding(.top)
                 }
-                .padding(.horizontal, horizontalPadding)
-                .padding(.bottom, metrics.callToActionHeight + metrics.orangeButtonBottomInset)
+
+                
 
                 Button("다음") {
 
