@@ -7,20 +7,6 @@ struct NotiSettingView: View {
     @State private var appNotiToggle = false
     @State private var nightAppNotiToggle = false
     
-    // backButton 커스텀
-    var backButton: some View {
-        Button{
-            self.presentationMode.wrappedValue.dismiss()
-        } label: {
-            HStack {
-                Image(systemName: "chevron.left")
-                    .foregroundStyle(.black)
-                    .aspectRatio(contentMode: .fill)
-                    .fontWeight(.medium)
-            }
-        }
-    }
-    
     var body: some View {
                     
         VStack(alignment: .leading, spacing: 10) {
@@ -42,20 +28,9 @@ struct NotiSettingView: View {
         .padding(.leading, 40)
         .padding(.trailing, 40)
         .padding(.bottom, 610)
-        .navigationBarBackButtonHidden(true)
-        
-        // 상단 toolBar
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                backButton
-            }
-            
-            ToolbarItem(placement: .principal) {
-                Text("알림 설정")
-                    .font(.system(size: 18, weight: .semibold))
-            }
+        .customToolbar(title: "알림 설정") {
+            presentationMode.wrappedValue.dismiss()
         }
-
     }
 }
 

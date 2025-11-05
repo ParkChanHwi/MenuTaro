@@ -19,6 +19,7 @@ struct MypageView: View {
     var body: some View {
             ScrollView {
                 VStack(spacing: 20) {
+                    customTopbar(title: "마이페이지")
                     HStack {
                         ZStack {
                             LinearGradient(
