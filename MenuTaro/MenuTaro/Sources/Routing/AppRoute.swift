@@ -16,6 +16,8 @@ public enum AppRoute: Hashable {
     case snackFortune(step: SnackFortuneStep)
     case menuTaro
     case MenuTaroSelected(foodId: UUID)
+    case onboarding(step: OnboardingStep)
+    case mypageEdit
 }
 
 public extension AppRoute {
@@ -42,6 +44,10 @@ public extension AppRoute {
             return Identifier(key: "menuTaro")
         case let .MenuTaroSelected(foodId):
             return Identifier(key: "MenuTaroSelected", value: foodId.uuidString)
+        case let .onboarding(step):
+            return Identifier(key: "onboarding", value: step.rawValue)
+        case .mypageEdit:
+            return Identifier(key: "mypageEdit")
         }
     }
     
@@ -72,6 +78,14 @@ public extension AppRoute {
                 return nil
             }
             self = .MenuTaroSelected(foodId: foodId)
+        case "onboarding":
+            guard let value = identifier.value,
+                  let step = OnboardingStep(rawValue: value) else {
+                return nil
+            }
+            self = .onboarding(step: step)
+        case "mypageEdit":
+            self = .mypageEdit
         default :
             return nil
         }
@@ -86,3 +100,8 @@ public enum SnackFortuneStep: String, Hashable, Codable,CaseIterable {
     case result
 }
 
+public enum OnboardingStep: String, Hashable, Codable, CaseIterable {
+    case name
+    case profile
+    case terms
+}

@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct OnboardingTermsView: View {
+    @EnvironmentObject private var router: Router
+    @EnvironmentObject private var onboarding: OnboardingFlowViewModel
+    @Environment(\.modelContext) private var modelContext
     @StateObject private var vm = OnboardingTermsViewModel()
+    @State private var errorMessage: String?
 
     var body: some View {
         GeometryReader { proxy in
             let metrics = MenuTaroLayoutMetrics.metrics(for: proxy.size)
-            
+
             ZStack(alignment: .topLeading) {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("3/3")
@@ -50,12 +55,22 @@ struct OnboardingTermsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 // 하단 CTA (그대로 유지)
-                Button("시작하기") {
-                    // action
+                VStack(spacing: 12) {
+                    if let errorMessage {
+                        Text(errorMessage)
+                            .font(.system(.footnote, weight: .medium))
+                            .foregroundColor(.primaryRed)
+                    }
+
+                    Button("시작하기") {
+                        startApp()
+                    }
+                    .appFont(20, weight: .bold)
+                    .frame(height: metrics.callToActionHeight)
+                    .buttonStyle(OrangeButtonStyle())
+                    .disabled(!vm.canStart)
+                    .opacity(vm.canStart ? 1 : 0.5)
                 }
-                .appFont(20, weight: .bold)
-                .frame(height: metrics.callToActionHeight)
-                .buttonStyle(OrangeButtonStyle())
                 .padding(.horizontal, metrics.horizontalPadding)
                 .padding(.bottom, metrics.orangeButtonBottomInset)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -66,6 +81,23 @@ struct OnboardingTermsView: View {
 }
 
 
+private extension OnboardingTermsView {
+    func startApp() {
+        do {
+            try onboarding.complete(using: modelContext)
+            errorMessage = nil
+            router.popToRoot()
+            router.select(tab: .home)
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+}
+
+
 #Preview {
     OnboardingTermsView()
+        .environmentObject(Router())
+        .environmentObject(OnboardingFlowViewModel())
+        .modelContainer(makePreviewContainer())
 }

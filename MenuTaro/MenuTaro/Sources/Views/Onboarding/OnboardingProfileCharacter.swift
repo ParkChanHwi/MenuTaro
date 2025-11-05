@@ -8,18 +8,16 @@
 import SwiftUI
 
 struct OnboardingProfileCharacter: View {
-    @StateObject private var viewModel = OnboardingProfileCharacterViewModel()
+    @EnvironmentObject private var router: Router
+    @EnvironmentObject private var onboarding: OnboardingFlowViewModel
+
+    private var isNextEnabled: Bool {
+        onboarding.selectedCharacter != nil
+    }
 
     var body: some View {
         GeometryReader { proxy in
             let metrics = MenuTaroLayoutMetrics.metrics(for: proxy.size)
-            let horizontalPadding = proxy.size.width * 0.1
-            let gridSpacing = proxy.size.width * 0.06
-            let columns: [GridItem] = Array(
-                repeating: GridItem(.flexible(), spacing: gridSpacing),
-                count: 2
-            )
-            let avatarDiameter = (proxy.size.width - (horizontalPadding * 2) - gridSpacing) / 2
 
             ZStack(alignment: .topLeading) {
                 VStack(alignment: .leading, spacing: 20) {
@@ -37,17 +35,17 @@ struct OnboardingProfileCharacter: View {
                         .font(.system(.caption, weight: .regular))
                         .foregroundColor(.white)
                         .padding(.horizontal, metrics.horizontalPadding)
-                    
-                    ProfileCharacterGrid(viewModel: viewModel)
+
+                    ProfileCharacterGrid(viewModel: onboarding.characterSelection)
                         .frame(minHeight: proxy.size.height * 0.35)
                         .padding(.bottom, metrics.callToActionHeight + metrics.orangeButtonBottomInset)
                         .padding(.top)
                 }
 
-                
+
 
                 Button("다음") {
-
+                    router.push(.onboarding(step: .terms))
                 }
                 .appFont(20, weight: .bold)
                 .frame(height: metrics.callToActionHeight)
@@ -55,6 +53,8 @@ struct OnboardingProfileCharacter: View {
                 .padding(.horizontal, metrics.horizontalPadding)
                 .padding(.bottom, metrics.orangeButtonBottomInset)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                .disabled(!isNextEnabled)
+                .opacity(isNextEnabled ? 1 : 0.5)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
@@ -64,4 +64,6 @@ struct OnboardingProfileCharacter: View {
 
 #Preview {
     OnboardingProfileCharacter()
+        .environmentObject(Router())
+        .environmentObject(OnboardingFlowViewModel())
 }
