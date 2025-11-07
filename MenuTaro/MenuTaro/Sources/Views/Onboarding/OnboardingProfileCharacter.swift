@@ -44,7 +44,7 @@ struct OnboardingProfileCharacter: View {
                 }
 
                 Button("다음") {
-
+                    router.push(.onboarding(step: .terms))
                 }
                 .appFont(20, weight: .bold)
                 .frame(height: metrics.callToActionHeight)
@@ -64,5 +64,5 @@ struct OnboardingProfileCharacter: View {
 #Preview {
     OnboardingProfileCharacter()
         .environmentObject(Router())
-         .environmentObject(OnboardingFlowViewModel())
+        .environmentObject(OnboardingFlowViewModel())
 }

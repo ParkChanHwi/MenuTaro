@@ -89,14 +89,22 @@ struct NavigationRootView: View {
             OnboardingNameSettingView()
                 .environmentObject(router)
                 .environmentObject(onboarding)
+                .customToolbar(title: "", showBackButton: false) {
+                }
         case .profile:
             OnboardingProfileCharacter()
                 .environmentObject(router)
                 .environmentObject(onboarding)
+                .customToolbar(title: "") {
+                    router.pop()
+                }
         case .terms:
             OnboardingTermsView()
                 .environmentObject(router)
                 .environmentObject(onboarding)
+                .customToolbar(title: "") {
+                    router.pop()
+                }
         }
     }
     
