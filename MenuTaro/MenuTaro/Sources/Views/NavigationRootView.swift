@@ -73,6 +73,9 @@ struct NavigationRootView: View {
         case .mypageEdit:
             MypageEditView()
                 .environmentObject(router)
+                .customToolbar(title: "프로필 편집") {
+                    router.pop()
+                }
 
         case let .MenuTaroSelected(foodId):
             MenuTaroSelectedContainer(foodId: foodId)
