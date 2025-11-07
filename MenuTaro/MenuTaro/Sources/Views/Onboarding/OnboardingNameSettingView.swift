@@ -10,7 +10,8 @@ import SwiftUI
 struct OnboardingNameSettingView: View {
     @EnvironmentObject private var router: Router
     @EnvironmentObject private var onboarding: OnboardingFlowViewModel
-
+    private let notiManager = NotificationManager.shared
+    
     private var isNextEnabled: Bool {
         onboarding.isNameValid
     }
@@ -57,6 +58,10 @@ struct OnboardingNameSettingView: View {
         }
         .background(Color.black)
 
+        // 알림 권한 띄우는
+        .onAppear {
+            notiManager.requestNotificatonAuthorization()
+        }
     }
 }
 
