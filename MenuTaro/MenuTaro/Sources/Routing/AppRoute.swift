@@ -18,6 +18,7 @@ public enum AppRoute: Hashable {
     case MenuTaroSelected(foodId: UUID)
     case onboarding(step: OnboardingStep)
     case mypageEdit
+    case setting
 }
 
 public extension AppRoute {
@@ -48,6 +49,8 @@ public extension AppRoute {
             return Identifier(key: "onboarding", value: step.rawValue)
         case .mypageEdit:
             return Identifier(key: "mypageEdit")
+        case .setting:
+            return Identifier(key: "setting")
         }
     }
     
@@ -86,6 +89,9 @@ public extension AppRoute {
             self = .onboarding(step: step)
         case "mypageEdit":
             self = .mypageEdit
+            
+        case "setting":
+            self = .setting
             
         default :
             return nil

@@ -30,7 +30,7 @@ struct MypageView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                customTopbar(title: "마이페이지")
+                customTopbar(title: "마이페이지", showGearButton: true)
                 HStack(alignment: .center, spacing: 16) {
                     ProfileCharacterAvatar(
                         imageName: profileImageName,
@@ -139,6 +139,7 @@ struct MypageView: View {
 
 #Preview {
     MypageView()
+        .background(Color.black)
         .modelContainer(makePreviewContainer())
         .environmentObject(Router())
 }

@@ -82,6 +82,12 @@ struct NavigationRootView: View {
                 .navigationTitle("메뉴 타로")
                 .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+            
+        case .setting:
+            SettingView()
+                .navigationTitle("설정")
+                .navigationBarTitleDisplayMode(.inline)
+                .environmentObject(router)
         }
     }
 
