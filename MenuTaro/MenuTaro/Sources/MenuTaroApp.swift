@@ -3,7 +3,10 @@ import SwiftData
 
 @main
 struct MenuTaroAppApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var router = Router()
+    
     var body: some Scene {
         WindowGroup {
             NavigationRootView()
