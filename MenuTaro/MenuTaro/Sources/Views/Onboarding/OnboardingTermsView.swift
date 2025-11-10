@@ -48,7 +48,7 @@ struct OnboardingTermsView: View {
                         }
                     }
                     .padding(.horizontal, metrics.horizontalPadding)
-                    .padding(.top, metrics.componentSpacing + proxy.size.height * 0.4)
+                    .padding(.top, metrics.componentSpacing + proxy.size.height * 0.48)
 
                     .padding(.bottom, metrics.callToActionHeight + metrics.orangeButtonBottomInset)
                 }

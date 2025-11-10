@@ -24,10 +24,17 @@ struct ConsentRow: View {
                 .contentShape(Rectangle())
                 .onTapGesture(perform: toggle)
             
-            Image(systemName: "chevron.right")
-                .font(.system(size: 14, weight: .bold))
+//            Image(systemName: "chevron.right")
+//                .font(.system(size: 14, weight: .bold))
+//                .foregroundStyle(.white.opacity(0.7))
+//                .onTapGesture(perform: showDetail)
+            
+            Text("보기")
+                .font(.system(.caption, weight: .semibold))
+                .underline()
                 .foregroundStyle(.white.opacity(0.7))
                 .onTapGesture(perform: showDetail)
+            
         }
         .padding(.horizontal, 14)
         .frame(height: 48)

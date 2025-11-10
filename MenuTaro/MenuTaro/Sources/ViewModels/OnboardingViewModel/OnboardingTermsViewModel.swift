@@ -17,9 +17,8 @@ struct ConsentItem: Identifiable, Hashable {
 @MainActor
 final class OnboardingTermsViewModel: ObservableObject {
     @Published var items: [ConsentItem] = [
-        .init(title: "[필수] 개인정보 수집 항목에 동의합니다.", isRequired: true,  isOn: false),
-        .init(title: "[선택] 알림 설정에 동의합니다.",      isRequired: false, isOn: true),
-        .init(title: "[선택] 마케팅 정보 수신에 동의합니다.", isRequired: false, isOn: false)
+        .init(title: "[필수] 개인정보 수집 항목 동의", isRequired: true,  isOn: false),
+        .init(title: "[선택] 마케팅 정보 수신 동의", isRequired: false, isOn: false)
     ]
     
     var canStart: Bool {
