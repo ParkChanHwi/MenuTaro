@@ -8,80 +8,47 @@
 import Foundation
 
 struct PreviewData {
-    static let sampleFoodKorean = FoodCard(
-        foodId: UUID(),
-        name: "불고기",
-        details: "달콤짭잘 소고기 요리",
-        category: .korean,
-        image: "TestBookmark"
-    )
-    
-    static let sampleFoodKorean2 = FoodCard (
-        foodId: UUID(),
-        name: "된장찌개",
-        details: "구수한 된장찌개",
-        category: .korean,
-        image: "TestBookmark"
+    private static func makeFood(named name: String) -> FoodCard {
+        if let seed = AppSeedData.foodCards.first(where: { $0.name == name }) {
+            return seed.makeModel()
+        }
+
+        return FoodCard(
+            foodId: UUID(),
+            name: name,
+            details: "미리보기 전용 데이터",
+            category: .etc,
+            image: "Taco"
         )
-    
-    static let sampleFoodKorean3 = FoodCard (
-        foodId: UUID(),
-        name: "김치찌개",
-        details: "돼지고기? 참치?",
-        category: .korean,
-        image: "TestBookmark"
-        )
-    
-    static let sampleFoodKorean4 = FoodCard (
-        foodId: UUID(),
-        name: "콩나물 국밥",
-        details: "계란 넣는 타이밍은?",
-        category: .korean,
-        image: "TestBookmark"
-        )
-    
-    static let sampleFoodJapanese = FoodCard(
-        foodId: UUID(),
-        name: "초밥",
-        details: "한교동",
-        category: .japanese,
-        image: "TestBookmark"
-    )
-    
-    static let sampleFoodJapanese2 = FoodCard(
-        foodId: UUID(),
-        name: "라멘",
-        details: "라멘",
-        category: .japanese,
-        image: "TestBookmark"
-    )
-    
-    static let sampleFoodJapanese3 = FoodCard(
-        foodId: UUID(),
-        name: "카츠",
-        details: "최애",
-        category: .japanese,
-        image: "TestBookmark"
-    )
-    
+    }
+
+    static let sampleFoodKorean = makeFood(named: "떡볶이")
+    static let sampleFoodKorean2 = makeFood(named: "라볶이")
+    static let sampleFoodKorean3 = makeFood(named: "쫄면")
+    static let sampleFoodKorean4 = makeFood(named: "김밥")
+
+    static let sampleFoodJapanese = makeFood(named: "꿔바로우")
+    static let sampleFoodJapanese2 = makeFood(named: "마라탕")
+    static let sampleFoodJapanese3 = makeFood(named: "마라샹궈")
+
     static let sampleSnack = Snack(
         snackId: UUID(),
         name: "마들렌",
         image: "cookie_snack"
     )
-    
+
     static let sampleUser = User(
         nickname: "이병건",
-        profileImage: ""
+        profileImage: "chicken"
     )
-    
+
     static let sampleBookmark = Bookmark(
         bookmarkId: UUID(),
         createdAt: Date(),
         food: sampleFoodJapanese,
         user: sampleUser
     )
-    
+
     static let sampleRecord = ConsumptionRecord(
         recordId: UUID(),
         timestamp: Date(),
@@ -92,55 +59,16 @@ struct PreviewData {
 }
 
 extension PreviewData {
-    static let sampleFoodExtra = [
-        FoodCard(
-            foodId: UUID(),
-            name: "타코",
-            details: "티키타코",
-            category: .western,
-            image: "Taco"
-        ),
-        FoodCard(
-            foodId: UUID(),
-            name: "냉면",
-            details: "여름 별미",
-            category: .korean,
-            image: "TestBookmark"
-        ),
-        FoodCard(
-            foodId: UUID(),
-            name: "짜장면",
-            details: "춘장 소스",
-            category: .chinese,
-            image: "TestBookmark"
-        ),
-        FoodCard(
-            foodId: UUID(),
-            name: "짬뽕",
-            details: "얼큰 국물",
-            category: .chinese,
-            image: "TestBookmark"
-        ),
-        FoodCard(
-            foodId: UUID(),
-            name: "탕수육",
-            details: "찍먹/부먹",
-            category: .chinese,
-            image: "TestBookmark"
-        ),
-        FoodCard(
-            foodId: UUID(),
-            name: "우동",
-            details: "두꺼운 면",
-            category: .japanese,
-            image: "TestBookmark"
-        ),
-        FoodCard(
-            foodId: UUID(),
-            name: "회",
-            details: "신선한 생선",
-            category: .japanese,
-            image: "TestBookmark"
-        )
-    ]
+    static let sampleFoodExtra: [FoodCard] = [
+        "짜장면",
+        "짬뽕",
+        "탕수육",
+        "포테이토 피자",
+        "페퍼로니 피자",
+        "고르곤졸라 피자",
+        "토마토 스파게티",
+        "햄버거",
+        "로제 파스타",
+        "부리토"
+    ].map { makeFood(named: $0) }
 }

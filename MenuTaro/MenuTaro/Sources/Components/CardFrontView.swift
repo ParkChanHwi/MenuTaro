@@ -59,12 +59,12 @@ struct CardFrontView: View {
 }
 
 #Preview {
-    let sample = FoodCard(
+    let sample = AppSeedData.foodCards.first?.makeModel() ?? FoodCard(
         foodId: UUID(),
         name: "치즈 떡볶이",
         details: "매콤한 떡볶이에 치즈를 듬뿍 얹은 메뉴",
         category: .korean,
-        image: "TestBookmark"
+        image: "Tteokbokki"
     )
     
     CardFrontView(food: sample)

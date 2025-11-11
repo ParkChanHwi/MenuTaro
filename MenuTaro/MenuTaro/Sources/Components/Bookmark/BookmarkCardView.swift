@@ -13,7 +13,7 @@ struct BookmarkCardView: View {
     
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Image("TestBookmark")
+            Image(bookmark.food.image.isEmpty ? "Cardfront" : bookmark.food.image)
                 .resizable()
                 .scaledToFill()
                 .frame(width: 170, height: 170)
