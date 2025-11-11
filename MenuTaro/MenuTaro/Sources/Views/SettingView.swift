@@ -11,7 +11,7 @@ struct SettingView: View {
         } label: {
             HStack {
                 Image(systemName: "chevron.left")
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.white)
                     .aspectRatio(contentMode: .fill)
                     .fontWeight(.medium)
             }
@@ -41,7 +41,7 @@ struct SettingView: View {
             }
             .padding(.leading, -140)
             .padding(.bottom, 410)
-            .foregroundColor(.black)
+            .foregroundColor(.white)
             .font(.system(size: 18, weight: .medium))
         }
         .navigationBarBackButtonHidden(true)
