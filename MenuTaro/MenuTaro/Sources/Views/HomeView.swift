@@ -3,18 +3,48 @@ import SwiftData
 
 struct HomeView: View {
     @EnvironmentObject private var router: Router
-    @Query(sort: \Bookmark.createdAt, order: .reverse)
-    private var bookmarks: [Bookmark]
+    @Query private var bookmarks: [Bookmark]
     @Query private var users: [User]
 
+    @Query private var recentRecords: [ConsumptionRecord]
     init() {
-        var descriptor = FetchDescriptor<User>()
-        descriptor.fetchLimit = 1
-        _users = Query(descriptor)
+        var userDescriptor = FetchDescriptor<User>()
+         userDescriptor.fetchLimit = 1
+         _users = Query(userDescriptor)
+
+         var bookmarkDescriptor = FetchDescriptor<Bookmark>(sortBy: [SortDescriptor(\.createdAt, order: .reverse)])
+         _bookmarks = Query(bookmarkDescriptor)
+
+         var recentDescriptor = FetchDescriptor<ConsumptionRecord>(
+             sortBy: [SortDescriptor(\.timestamp, order: .reverse)]
+         )
+         recentDescriptor.fetchLimit = 20
+         recentDescriptor.predicate = #Predicate { $0.food != nil }
+         _recentRecords = Query(recentDescriptor)
     }
 
     private var currentUser: User? {
         users.first
+    }
+    
+    private var filteredBookmarks: [Bookmark] {
+        guard let user = currentUser else { return [] }
+        return bookmarks.filter { $0.user.userId == user.userId }
+    }
+
+    private var recentFoods: [FoodCard] {
+        var seen = Set<UUID>()
+        var items: [FoodCard] = []
+
+        for record in recentRecords {
+            guard let food = record.food else { continue }
+            if seen.insert(food.foodId).inserted {
+                items.append(food)
+            }
+            if items.count >= 10 { break }
+        }
+
+        return items
     }
 
     private var greetingText: String {
@@ -129,46 +159,28 @@ struct HomeView: View {
                 .padding(.top, h * 0.016)
                 .padding(.horizontal, (w - gradientCardW) / 2)
 
-                // 섹션 헤더
-                HStack {
-                    Text("최근에 먹은 메뉴")
-                        .foregroundColor(.white)
-                        .font(.system(size: 18, weight: .medium))
+                // 최근에 먹은 메뉴 섹션
+                SectionHeaderView(title: "최근에 먹은 메뉴")
+                    .padding(.top, sectionHeaderTop)
+                    .padding(.horizontal, sidePadding)
 
-                    Spacer()
-
-                    Button(action: { print("전체보기 버튼 클릭됨") }) {
-                        HStack(spacing: 5) {
-                            Text("전체보기")
-                            Image(systemName: "chevron.right")
-                                .resizable()
-                                .frame(width: 7, height: 14)
-                        }
-                        .foregroundColor(.gray)
-                        .font(.custom("SFPro-Regular", size: 12))
-                    }
-                    .buttonStyle(.plain)
-                }
-                .padding(.top, sectionHeaderTop)
-                .padding(.horizontal, sidePadding)
-
-                // 북마크 영역
-                if bookmarks.isEmpty {
-                    Text("아직 북마크 X")
+                if recentFoods.isEmpty {
+                    Text("아직 기록된 메뉴가 없어요")
                         .foregroundColor(.gray)
                         .padding(.top, h * 0.01)
                         .padding(.horizontal, sidePadding)
                 } else {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: recentHSpacing) {
-                            ForEach(bookmarks.prefix(5), id: \.persistentModelID) { bookmark in
-                                BookmarkCardView(bookmark: bookmark)
+                            ForEach(recentFoods, id: \.foodId) { food in
+                                RecentMenuCardView(food: food)
                             }
                         }
                         .padding(.horizontal, sidePadding)
                         .padding(.vertical, h * 0.012)
                     }
                 }
+
 
                 Spacer(minLength: 0)
             }
@@ -180,11 +192,13 @@ struct HomeView: View {
     }
 }
 
-
 #Preview {
     do {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: Bookmark.self, FoodCard.self, User.self, configurations: config)
+        let container = try ModelContainer(
+            for: Bookmark.self, FoodCard.self, User.self, ConsumptionRecord.self,
+            configurations: config
+        )
 
         let user = User(nickname: "테스트", profileImage: "testProfile")
         let food = FoodCard(foodId: UUID(), name: "치킨", details: "맛있는 치킨", category: .etc, image: "chicken")
@@ -192,12 +206,62 @@ struct HomeView: View {
 
         container.mainContext.insert(user)
         container.mainContext.insert(food)
+        let record = ConsumptionRecord(
+            recordId: UUID(),
+            timestamp: Date(),
+            food: food,
+            snack: nil,
+            user: user
+        )
+
         container.mainContext.insert(bookmark)
+        container.mainContext.insert(record)
 
         return HomeView()
             .environmentObject(Router())
             .modelContainer(container)
     } catch {
         fatalError("Preview 실패: \(error.localizedDescription)")
+    }
+}
+
+private struct SectionHeaderView: View {
+    let title: String
+
+    var body: some View {
+        HStack {
+            Text(title)
+                .foregroundColor(.white)
+                .font(.system(size: 18, weight: .medium))
+
+            Spacer()
+        }
+    }
+}
+
+private struct RecentMenuCardView: View {
+    let food: FoodCard
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Image(food.image.isEmpty ? "cardfront" : food.image)
+                .resizable()
+                .scaledToFill()
+                .frame(width: 140, height: 140)
+                .clipped()
+                .cornerRadius(16)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(food.name)
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.white)
+                    .lineLimit(1)
+
+                Text(food.category.rawValue)
+                    .font(.system(size: 13, weight: .medium))
+                    .foregroundColor(.gray)
+            }
+        }
+        .frame(width: 140, alignment: .leading)
     }
 }

@@ -149,14 +149,29 @@ extension NavigationRootView {
         didSeedInitialData = true
 
         var descriptor = FetchDescriptor<FoodCard>()
-        descriptor.fetchLimit = 1
+        let existingCards = (try? modelContext.fetch(descriptor)) ?? []
+        var didChange = false
 
-        let existing = (try? modelContext.fetch(descriptor)) ?? []
-        guard existing.isEmpty else { return }
+        var existingByName: [String: FoodCard] = [:]
+        for card in existingCards {
+            existingByName[card.name] = card
+        }
 
         for seed in AppSeedData.foodCards {
-            modelContext.insert(seed.makeModel())
+            if let card = existingByName[seed.name] {
+                if card.details != seed.details || card.category != seed.category || card.image != seed.image {
+                    card.details = seed.details
+                    card.category = seed.category
+                    card.image = seed.image
+                    didChange = true
+                }
+            } else {
+                modelContext.insert(seed.makeModel())
+                didChange = true
+            }
         }
+
+        guard didChange else { return }
 
         do { try modelContext.save() }
         catch {
