@@ -11,65 +11,73 @@ import SwiftData
 private let hInset: CGFloat = 20
 
 struct RankingView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject private var router: Router
     @Environment(\.modelContext) private var context
     @StateObject private var vm = MypageViewModel()
     @State private var selectedTab: String = "음식"
     let tabs = ["음식", "간식"]
 
     var body: some View {
-        VStack {
-            HStack(spacing: 130) {
-                ForEach(tabs, id: \.self) { tab in
-                    Button {
-                        selectedTab = tab
-                    } label: {
-                        Text(tab)
-                            .font(.system(size: 16, weight: .semibold))
-                            .frame(width: 30)
-                            .foregroundColor(
-                                selectedTab == tab ? Color(red: 1, green: 0.29, blue: 0.14) : .gray
+        NavigationView {
+            VStack {
+                HStack(spacing: 130) {
+                    ForEach(tabs, id: \.self) { tab in
+                        Button {
+                            selectedTab = tab
+                        } label: {
+                            Text(tab)
+                                .font(.system(size: 16, weight: .semibold))
+                                .frame(width: 30)
+                                .foregroundColor(
+                                    selectedTab == tab ? Color(red: 1, green: 0.29, blue: 0.14) : .gray
+                                )
+                        }
+                    }
+                }
+                .padding(.horizontal, hInset)
+                .padding(.bottom, 25)
+                
+                switch selectedTab {
+                case "음식":
+                    if vm.menuTop3.isEmpty {
+                        Text("아직 음식 기록이 없어요")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            .padding(.bottom, 150)
+                    } else {
+                        ForEach(Array(vm.menuTop3.enumerated()), id: \.1.id) { index, item in
+                            RankingCardView(
+                                rank: index + 1,
+                                name: item.food.name,
+                                image: item.food.image,
+                                countText: "\(item.count)회",
+                                isTop3: index < 3
                             )
+                        }
+                        .padding(.horizontal, hInset)
                     }
-                }
-            }
-            .padding(.horizontal, hInset)
-            .padding(.bottom, 25)
-
-            switch selectedTab {
-            case "음식":
-                if vm.menuTop3.isEmpty {
-                    Text("아직 음식 기록이 없어요")
-                } else {
-                    ForEach(Array(vm.menuTop3.enumerated()), id: \.1.id) { index, item in
-                        RankingCardView(
-                            rank: index + 1,
-                            name: item.food.name,
-                            image: item.food.image,
-                            countText: "\(item.count)회",
-                            isTop3: index < 3
-                        )
+                    
+                case "간식":
+                    if vm.snackTop3.isEmpty {
+                        Text("아직 간식 기록이 없어요")
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                            .padding(.bottom, 150)
+                    } else {
+                        ForEach(Array(vm.snackTop3.enumerated()), id: \.1.id) { index, item in
+                            RankingCardView(
+                                rank: index + 1,
+                                name: item.snack.name,
+                                image: item.snack.image,
+                                countText: "\(item.count)회",
+                                isTop3: index < 3
+                            )
+                        }
+                        .padding(.horizontal, hInset)
                     }
-                    .padding(.horizontal, hInset)
+                    
+                default:
+                    EmptyView()
                 }
-
-            case "간식":
-                if vm.snackTop3.isEmpty {
-                    Text("아직 간식 기록이 없어요")
-                } else {
-                    ForEach(Array(vm.snackTop3.enumerated()), id: \.1.id) { index, item in
-                        RankingCardView(
-                            rank: index + 1,
-                            name: item.snack.name,
-                            image: item.snack.image,
-                            countText: "\(item.count)회",
-                            isTop3: index < 3
-                        )
-                    }
-                    .padding(.horizontal, hInset)
-                }
-
-            default:
-                EmptyView()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)

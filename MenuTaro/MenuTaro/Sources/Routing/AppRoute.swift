@@ -19,6 +19,7 @@ public enum AppRoute: Hashable {
     case onboarding(step: OnboardingStep)
     case mypageEdit
     case setting
+    case ranking
 }
 
 public extension AppRoute {
@@ -51,6 +52,8 @@ public extension AppRoute {
             return Identifier(key: "mypageEdit")
         case .setting:
             return Identifier(key: "setting")
+        case .ranking:
+            return Identifier(key: "ranking")
         }
     }
     
@@ -92,6 +95,9 @@ public extension AppRoute {
             
         case "setting":
             self = .setting
+            
+        case "ranking":
+            self = .ranking
             
         default :
             return nil

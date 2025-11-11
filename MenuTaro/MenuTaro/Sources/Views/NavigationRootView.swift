@@ -88,6 +88,13 @@ struct NavigationRootView: View {
                 .navigationTitle("설정")
                 .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+        
+        case .ranking:
+            RankingView()
+                .environmentObject(router)
+                .customToolbar(title: "전체 랭킹") {
+                    router.pop()
+                }
         }
     }
 
