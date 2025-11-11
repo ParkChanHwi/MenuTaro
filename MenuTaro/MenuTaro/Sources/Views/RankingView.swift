@@ -17,19 +17,6 @@ struct RankingView: View {
     @StateObject private var vm = MypageViewModel()
     @State private var selectedTab: String = "음식"
     let tabs = ["음식", "간식"]
-    //백 버튼
-    var backButton: some View {
-        Button{
-            self.presentationMode.wrappedValue.dismiss()
-        } label: {
-            HStack {
-                Image(systemName: "chevron.left")
-                    .foregroundStyle(.white)
-                    .aspectRatio(contentMode: .fill)
-                    .fontWeight(.medium)
-            }
-        }
-    }
 
     var body: some View {
         NavigationView {
@@ -91,18 +78,6 @@ struct RankingView: View {
                 default:
                     EmptyView()
                 }
-            }
-        }
-        //백 버튼
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                backButton
-            }
-            
-            ToolbarItem(placement: .principal) {
-                Text("전체 랭킹")
-                    .font(.system(size: 18, weight: .semibold))
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
