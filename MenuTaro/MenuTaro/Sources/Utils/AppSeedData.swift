@@ -52,6 +52,7 @@ enum AppSeedData {
         FoodCardSeed(name: "부리토", details: "풍성한 속재료를 또띠아에 감싼 한 끼", category: .western, image: "Burrito"),
         FoodCardSeed(name: "쌀국수", details: "담백한 육수에 쫄깃한 면", category: .etc, image: "Ricenoodles"),
         FoodCardSeed(name: "분짜", details: "상큼한 소스와 고기가 어우러진 베트남 요리", category: .etc, image: "Buncha"),
-        FoodCardSeed(name: "카레 & 난", details: "인도식 커리와 고소한 난의 조합", category: .etc, image: "Curry&Nann")
+        FoodCardSeed(name: "카레 & 난", details: "인도식 커리와 고소한 난의 조합", category: .etc, image: "Curry&Nann"),
+        FoodCardSeed(name: "타코", details: "티키타코", category: .western, image: "Taco")
     ]
 }
