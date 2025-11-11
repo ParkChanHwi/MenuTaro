@@ -88,6 +88,12 @@ struct NavigationRootView: View {
                 .navigationTitle("설정")
                 .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+        
+        case .ranking:
+            RankingView()
+                .navigationTitle("전체 랭킹")
+                .navigationBarTitleDisplayMode(.inline)
+                .environmentObject(router)
         }
     }
 

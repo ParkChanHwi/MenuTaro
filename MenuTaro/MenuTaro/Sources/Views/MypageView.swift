@@ -72,12 +72,16 @@ struct MypageView: View {
                         .foregroundColor(.white)
                     Spacer()
                     HStack(spacing: 4) {
-                        Text("전체보기")
-                            .font(.system(size: 12, weight: .regular, design: .default))
-                            .foregroundColor(.gray)
-                        Image(systemName: "chevron.right")
-                            .font(.system(size: 12))
-                            .foregroundColor(.gray)
+                        Button {
+                            router.push(.ranking)
+                        } label: {
+                            Text("전체보기")
+                                .font(.system(size: 12, weight: .regular, design: .default))
+                                .foregroundColor(.gray)
+                            Image(systemName: "chevron.right")
+                                .font(.system(size: 12))
+                                .foregroundColor(.gray)
+                        }
                     }
                 }
 
