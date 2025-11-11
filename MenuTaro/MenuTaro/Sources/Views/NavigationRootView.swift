@@ -91,9 +91,10 @@ struct NavigationRootView: View {
         
         case .ranking:
             RankingView()
-                .navigationTitle("전체 랭킹")
-                .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+                .customToolbar(title: "전체 랭킹") {
+                    router.pop()
+                }
         }
     }
 
