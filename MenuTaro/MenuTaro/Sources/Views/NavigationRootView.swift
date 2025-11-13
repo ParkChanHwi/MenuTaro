@@ -63,9 +63,11 @@ struct NavigationRootView: View {
 
         case .menuTaro:
             MenuTaroView()
-                .navigationTitle("메뉴 타로")
-                .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+                .customToolbar(title: "메뉴 타로") {
+                    router.pop()
+                }
+                
             
         case let .onboarding(step):
             onboardingDestination(for: step)
@@ -79,9 +81,10 @@ struct NavigationRootView: View {
 
         case let .MenuTaroSelected(foodId):
             MenuTaroSelectedContainer(foodId: foodId)
-                .navigationTitle("메뉴 타로")
-                .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+                .customToolbar(title: "메뉴 타로") {
+                    router.pop()
+                }
             
         case .setting:
             SettingView()
@@ -130,12 +133,12 @@ struct NavigationRootView: View {
         case .selection:
             SnackTaro()
                 .customToolbar(title: "포춘 쿠키") {
-                    presentationMode.wrappedValue.dismiss()
+                    router.pop()
                 }
         case .opening:
             SnackTaro2()
                 .customToolbar(title: "포춘 쿠키") {
-                    presentationMode.wrappedValue.dismiss()
+                    router.pop()
                 }
         case .reveal:
             SnackTaro3()
