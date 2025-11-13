@@ -20,6 +20,7 @@ public enum AppRoute: Hashable {
     case mypageEdit
     case setting
     case ranking
+    case calendar
 }
 
 public extension AppRoute {
@@ -54,6 +55,8 @@ public extension AppRoute {
             return Identifier(key: "setting")
         case .ranking:
             return Identifier(key: "ranking")
+        case .calendar:
+            return Identifier(key: "calendar")
         }
     }
     
@@ -98,6 +101,9 @@ public extension AppRoute {
             
         case "ranking":
             self = .ranking
+            
+        case "calendar":
+            self = .calendar
             
         default :
             return nil

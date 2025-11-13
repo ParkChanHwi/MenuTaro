@@ -95,6 +95,13 @@ struct NavigationRootView: View {
                 .customToolbar(title: "전체 랭킹") {
                     router.pop()
                 }
+            
+        case .calendar:
+            CalendarView()
+                .environmentObject(router)
+                .customToolbar(title: "캘린더") {
+                    router.pop()
+                }
         }
     }
 
