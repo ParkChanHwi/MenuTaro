@@ -13,8 +13,7 @@ struct NotiSettingView: View {
             Text("푸시 알림")
                 .font(.system(size: 18, weight: .medium))
         
-            Toggle("앱 알림", isOn: $appNotiToggle)
-                .toggleStyle(SwitchToggleStyle(tint: Color.primaryRed))
+            NotificationPermissionToggleView()
             
             Toggle(isOn: $nightAppNotiToggle) {
                 Text("야간 알림")
