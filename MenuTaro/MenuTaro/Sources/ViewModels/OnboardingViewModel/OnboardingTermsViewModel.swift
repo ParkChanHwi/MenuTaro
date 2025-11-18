@@ -20,6 +20,7 @@ final class OnboardingTermsViewModel: ObservableObject {
         .init(title: "[필수] 개인정보 수집 항목 동의", isRequired: true,  isOn: false),
         .init(title: "[선택] 마케팅 정보 수신 동의", isRequired: false, isOn: false)
     ]
+    @Published var detailItem: ConsentItem?
     
     var canStart: Bool {
         items.filter(\.isRequired).allSatisfy(\.isOn)
@@ -32,6 +33,10 @@ final class OnboardingTermsViewModel: ObservableObject {
     
     /// 상세 약관 화면 이동
     func showDetail(for item: ConsentItem) {
-        
+        detailItem = item
+    }
+    
+    func dismissDetail() {
+        detailItem = nil
     }
 }

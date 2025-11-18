@@ -1,3 +1,11 @@
+//
+//  TermsSectionView.swift
+//  MenuTaro
+//
+//  Created by mac mini on 11/18/25.
+//
+import SwiftUI
+
 struct TermsSectionView: View {
     let section: TermsSection
 

@@ -76,13 +76,22 @@ struct OnboardingTermsView: View {
             }
         }
         .background(Color.black)
-        
+        .sheet(item: detailSheetBinding) { _ in
+                TermsAndConditions()
+        }
     }
     
 }
 
 
 private extension OnboardingTermsView {
+    var detailSheetBinding: Binding<ConsentItem?> {
+        Binding(
+            get: {vm.detailItem},
+            set: {vm.detailItem = $0}
+        )
+    }
+    
     func startApp() {
         do {
             try onboarding.complete(using: modelContext)
@@ -94,6 +103,7 @@ private extension OnboardingTermsView {
         }
     }
 }
+
 
 #Preview {
     OnboardingTermsView()
