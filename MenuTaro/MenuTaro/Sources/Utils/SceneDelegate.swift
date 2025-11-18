@@ -1,6 +1,6 @@
 import SwiftUI
 
-class SceneDelegate: NSObject, UIWindowSceneDelegate {
+class SceneDelegate: NSObject, UIWindowSceneDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     
@@ -15,6 +15,8 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
         window.rootViewController = UIHostingController(rootView: rootView)
         self.window = window
         window.makeKeyAndVisible()
+        
+        UNUserNotificationCenter.current().delegate = self
         
         sendNotificationMessage()
     }
@@ -46,5 +48,11 @@ class SceneDelegate: NSObject, UIWindowSceneDelegate {
                 print("알림 등록 완료")
             }
         }
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // 앱이 foreground일 때는 아무것도 표시 X
+        completionHandler([])
     }
 }
