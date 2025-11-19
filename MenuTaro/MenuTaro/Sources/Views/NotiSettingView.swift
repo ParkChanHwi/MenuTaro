@@ -15,13 +15,11 @@ struct NotiSettingView: View {
         
             NotificationPermissionToggleView()
             
-            Toggle(isOn: $nightAppNotiToggle) {
-                Text("야간 알림")
-                    .font(.system(size: 16))
-                + Text("(21시~08시)")
-                    .font(.system(size: 16))
-                    .foregroundColor(.gray)
-            }
+            // 추후 기능 추가 할 예정
+//            Toggle(isOn: $nightAppNotiToggle) {
+//                Text("마케팅 수신 동의")
+//                    .font(.system(size: 16))
+//            }
                 .toggleStyle(SwitchToggleStyle(tint: Color.primaryRed))
         }
         .padding(.leading, 40)
