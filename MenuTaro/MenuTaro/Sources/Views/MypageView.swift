@@ -97,7 +97,7 @@ struct MypageView: View {
                 } else {
                     ScrollView(.horizontal) {
                         HStack(spacing: 15) {
-                            ForEach(vm.menuTop3) { item in
+                            ForEach(vm.menuTop3.prefix(3)) { item in
                                 MypageCardView(name: item.food.name, image: item.food.image)
                             }
                         }
@@ -118,7 +118,7 @@ struct MypageView: View {
                 } else {
                     ScrollView(.horizontal) {
                         HStack(spacing: 15) {
-                            ForEach(vm.snackTop3) { item in
+                            ForEach(vm.snackTop3.prefix(3)) { item in
                                 MypageCardView(name: item.snack.name, image: item.snack.image)
                             }
                         }
