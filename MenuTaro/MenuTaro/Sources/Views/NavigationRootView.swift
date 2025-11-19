@@ -54,9 +54,12 @@ struct NavigationRootView: View {
     private func destination(for route: AppRoute) -> some View {
         switch route {
         case let .bookmarkList(category):
+            let categoryName = category?.rawValue ?? "북마크"
+            
             BookmarkView(category: category)
-                .navigationTitle(category?.rawValue ?? "북마크")
-                .navigationBarTitleDisplayMode(.inline)
+                .customToolbar(title: categoryName) {
+                    router.pop()
+                }
 
         case let .snackFortune(step):
             snackFortuneDestination(for: step)
