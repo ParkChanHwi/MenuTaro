@@ -11,7 +11,7 @@ struct HomeView: View {
             let w = geo.size.width
             let h = geo.size.height
 
-            // 📐 비율 기반 상수 계산
+            // 비율 기반 상수 계산
             let sidePadding = w * 0.051
             let bellSize = min(w * 0.062, 24)
             let heroCircle = w * 0.41
@@ -25,17 +25,7 @@ struct HomeView: View {
             let recentHSpacing = w * 0.046
 
             VStack(alignment: .leading, spacing: 0) {
-
-                // 🔔 상단 알림 버튼
-                HStack {
-                    Spacer()
-                    Image(systemName: "bell.fill")
-                        .foregroundColor(.white)
-                        .frame(width: bellSize, height: bellSize)
-                }
-                .padding(.trailing, sidePadding)
-
-                // 🐥 인사 + 프로필 영역
+                // 인사 + 프로필 영역
                 HStack(alignment: .center, spacing: w * 0.04) {
                     Text(vm.greetingText)
                         .foregroundColor(.white)
@@ -63,7 +53,7 @@ struct HomeView: View {
                 }
                 .padding(.horizontal, sidePadding)
 
-                // 🔮 기능 카드 (메뉴 타로 / 포춘쿠키)
+                // 기능 카드 (메뉴 타로 / 포춘쿠키)
                 VStack(spacing: h * 0.012) {
 
                     // 메뉴 타로 카드
@@ -119,7 +109,7 @@ struct HomeView: View {
                 .padding(.top, h * 0.016)
                 .padding(.horizontal, (w - gradientCardW) / 2)
 
-                // 🍽 최근 먹은 메뉴
+                // 최근 먹은 메뉴
                 SectionHeaderView(title: "최근에 먹은 메뉴")
                     .padding(.top, sectionHeaderTop)
                     .padding(.horizontal, sidePadding)
