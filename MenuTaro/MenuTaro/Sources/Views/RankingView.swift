@@ -74,13 +74,12 @@ struct RankingView: View {
                         }
                         .padding(.horizontal, hInset)
                     }
-                    
                 default:
                     EmptyView()
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .onAppear {
             vm.setContext(context)
             vm.fetchMenuTop3(limit: 10)
@@ -91,6 +90,5 @@ struct RankingView: View {
 
 #Preview {
     RankingView()
-        .background(Color.black)
-        .modelContainer(makePreviewContainer())
+       
 }
