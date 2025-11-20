@@ -98,6 +98,7 @@ struct HomeView: View {
                                         width: gradientCardW * 0.565,
                                         height: gradientCardH * 1.225
                                     )
+                                    .opacity(0.05)
                             }
                             .padding(.leading, gradientInternalLeading)
                             .padding(.bottom, gradientCardH * 0.097)
