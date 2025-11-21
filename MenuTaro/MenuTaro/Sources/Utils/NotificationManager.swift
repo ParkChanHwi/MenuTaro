@@ -1,3 +1,4 @@
+// NotificationManager.swift
 import SwiftUI
 import UserNotifications
 
@@ -17,5 +18,46 @@ class NotificationManager {
                 print("사용자가 알림 권한 거부")
             }
         }
+    }
+    
+    func scheduleDailyNotification() {
+        let center = UNUserNotificationCenter.current()
+        
+        center.removeAllPendingNotificationRequests()
+        
+        let times: [(hour: Int, minute: Int, title: String, body: String)] = [
+            (8, 0, "아침 알림", "아침 드세요!"),
+            (12, 0, "점실 알림", "점심 드세요!"),
+            (18, 0, "저녁 알림", "저녁 드세요!")
+        ]
+        
+        for time in times {
+            scheduleNotification(
+                hour: time.hour,
+                minute: time.minute,
+                title: time.title,
+                body: time.body
+            )
+        }
+    }
+    
+    private func scheduleNotification(hour: Int, minute: Int, title: String, body: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let request = UNNotificationRequest(
+            identifier: UUID().uuidString,
+            content: content,
+            trigger: trigger
+        )
+        UNUserNotificationCenter.current().add(request)
     }
 }

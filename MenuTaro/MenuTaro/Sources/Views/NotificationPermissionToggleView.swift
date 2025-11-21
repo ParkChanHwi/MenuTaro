@@ -1,3 +1,4 @@
+// NotificationPermissionToggleView.swift
 import SwiftUI
 import UserNotifications
 
@@ -27,6 +28,10 @@ struct NotificationPermissionToggleView: View {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
             DispatchQueue.main.async {
                 isNotificationEnabled = granted
+                
+                if granted {
+                    NotificationManager.shared.scheduleDailyNotification()
+                }
             }
         }
     }
@@ -54,6 +59,7 @@ struct NotificationPermissionToggleView: View {
                 case .authorized, .provisional, .ephemeral:
                     // 이미 권한 있으면 토글 켜진 상태로 유지
                     isNotificationEnabled = true
+                    NotificationManager.shared.scheduleDailyNotification()
                 @unknown default:
                     isNotificationEnabled = false
                 }
