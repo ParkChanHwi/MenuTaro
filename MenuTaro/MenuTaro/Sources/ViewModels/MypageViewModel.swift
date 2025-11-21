@@ -30,8 +30,6 @@ final class MypageViewModel: ObservableObject {
 
     func setContext(_ context: ModelContext) {
         self.context = context
-        fetchMenuTop3()
-        fetchSnackTop3()
     }
     
     func fetchMenuTop3(limit: Int = 10, since: Date? = nil, for user: User? = nil) {
@@ -72,9 +70,20 @@ final class MypageViewModel: ObservableObject {
             do {
                 var desc = FetchDescriptor<ConsumptionRecord>()
                 
-                if let u = user {
+                if let u = user, let s = since {
                     let uid = u.userId
-                    desc.predicate = #Predicate { $0.user.userId == uid }
+                    desc.predicate = #Predicate { rec in
+                        rec.user.userId == uid && rec.timestamp >= s
+                    }
+                } else if let u = user {
+                    let uid = u.userId
+                    desc.predicate = #Predicate { rec in
+                        rec.user.userId == uid
+                    }
+                } else if let s = since {
+                    desc.predicate = #Predicate { rec in
+                        rec.timestamp >= s
+                    }
                 }
                 
                 let records = try context.fetch(desc)
