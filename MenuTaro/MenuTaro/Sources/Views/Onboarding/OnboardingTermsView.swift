@@ -76,8 +76,8 @@ struct OnboardingTermsView: View {
             }
         }
         .background(Color.black)
-        .sheet(item: detailSheetBinding) { _ in
-                TermsAndConditions()
+        .sheet(item: detailSheetBinding) { item in
+            TermsAndConditions(document: item.document)
         }
     }
     
