@@ -28,6 +28,12 @@ struct MypageView: View {
     private var nickname: String { currentUser?.nickname ?? "머먹을래" }
 
     var body: some View {
+        // Date 가져와서 Month만 추출(N월 랭킹용)
+        let date = Date()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        let month = components.month
+        
         ScrollView {
             VStack(spacing: 20) {
                 customTopbar(title: "마이페이지", showGearButton: true)
@@ -67,7 +73,8 @@ struct MypageView: View {
                 })
 
                 HStack {
-                    Text("7월 랭킹")
+                    // 현재 달로 자동으로 바뀌게
+                    Text("\(month ?? 0)월 랭킹")
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(.white)
                     Spacer()
@@ -133,10 +140,10 @@ struct MypageView: View {
         }
         .onAppear {
             vm.setContext(context)
-            vm.refresh(for: currentUser)
+            vm.refresh(for: currentUser, since: Date.startOfThisMonth)
         }
         .onChange(of: users) { _, _ in
-            vm.refresh(for: currentUser)
+            vm.refresh(for: currentUser, since: Date.startOfThisMonth)
         }
     }
 }

@@ -17,6 +17,13 @@ struct RankingView: View {
     @StateObject private var vm = MypageViewModel()
     @State private var selectedTab: String = "음식"
     let tabs = ["음식", "간식"]
+    @Query private var users: [User]
+    init() {
+        var descriptor = FetchDescriptor<User>()
+        descriptor.fetchLimit = 1
+        _users = Query(descriptor)
+    }
+    private var currentUser: User? { users.first }
 
     var body: some View {
         NavigationView {
@@ -82,8 +89,10 @@ struct RankingView: View {
         }
         .onAppear {
             vm.setContext(context)
-            vm.fetchMenuTop3(limit: 10)
-            vm.fetchSnackTop3(limit: 10)
+            vm.refresh(for: currentUser, since: Date.startOfThisMonth)
+        }
+        .onChange(of: users) { _, _ in
+            vm.refresh(for: currentUser, since: Date.startOfThisMonth)
         }
     }
 }
