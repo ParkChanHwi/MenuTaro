@@ -60,7 +60,11 @@ struct OnboardingNameSettingView: View {
 
         // 알림 권한 띄우는
         .onAppear {
-            notiManager.requestNotificatonAuthorization()
+            notiManager.requestNotificatonAuthorization { granted in
+                if granted {
+                    notiManager.scheduleDailyNotification()
+                }
+            }
         }
     }
 }
