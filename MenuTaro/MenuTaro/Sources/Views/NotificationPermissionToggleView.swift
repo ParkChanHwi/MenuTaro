@@ -16,7 +16,6 @@ struct NotificationPermissionToggleView: View {
                     notificationManager.removeDailyNotifications()
                     // 알림 허용안함 -> 설정으로
                     navigateToSeetings()
-                    checkPermission()
                 }
             }
         // 현재 알림 권한 상태 확인
