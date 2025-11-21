@@ -60,7 +60,7 @@ class NotificationManager {
 
             let times: [(identifier: String, hour: Int, minute: Int, title: String, body: String)] = [
                 (self.dailyNotificationIdentifiers[0], 8, 0, "아침 알림", "아침 드세요!"),
-                (self.dailyNotificationIdentifiers[1], 12, 0, "점실 알림", "점심 드세요!"),
+                (self.dailyNotificationIdentifiers[1], 12, 0, "점심 알림", "점심 드세요!"),
                 (self.dailyNotificationIdentifiers[2], 18, 0, "저녁 알림", "저녁 드세요!")
             ]
 
