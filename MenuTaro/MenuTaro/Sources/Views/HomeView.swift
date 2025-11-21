@@ -82,14 +82,14 @@ struct HomeView: View {
 
                     // 간식 포춘쿠키 카드
                     Button {
-                        router.push(.snackFortune(step: .selection))
+//                        router.push(.snackFortune(step: .selection))
                     } label: {
-                        GradientCardView(width: gradientCardW, height: gradientCardH) {
+                        GradientCardView(width: gradientCardW, height: gradientCardH, isActive: false) {
                             HStack {
-                                Text("간식 포춘쿠키")
+                                Text("추후 오픈 예정")
                                     .font(.system(size: 18, weight: .medium))
                                     .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .frame(maxWidth: .infinity, alignment: .center)
 
                                 Image("cookie_broken_home")
                                     .resizable()
@@ -98,6 +98,7 @@ struct HomeView: View {
                                         width: gradientCardW * 0.565,
                                         height: gradientCardH * 1.225
                                     )
+                                    .opacity(0.05)
                             }
                             .padding(.leading, gradientInternalLeading)
                             .padding(.bottom, gradientCardH * 0.097)

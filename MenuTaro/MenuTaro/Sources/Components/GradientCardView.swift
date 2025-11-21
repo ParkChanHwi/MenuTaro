@@ -38,7 +38,7 @@ struct GradientCardView<Content: View>: View {
                 )
             } else {
                 // 비활성화 상태일 때는 회색 단색 배경
-                Color.gray.opacity(0.8)
+                Color.secondary.opacity(0.4)
             }
         }
         .frame(width: width, height: height)
