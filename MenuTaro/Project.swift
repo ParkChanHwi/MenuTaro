@@ -7,7 +7,7 @@ let project = Project(
             name: "MenuTaro",
             destinations: .iOS,
             product: .app,
-            bundleId: "dev.tuist.MenuTaro",
+            bundleId: "fd2.tuist.MenuTaro",
             infoPlist: .extendingDefault(
                 with: [
                     "UILaunchScreen": [
