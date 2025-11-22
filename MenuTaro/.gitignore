@@ -41,7 +41,6 @@ DerivedData/
 ### Tuist ###
 .graph
 graph.dot
-Derived/
 Tuist/.build
 Tuist/Generated
 .tuist/
@@ -53,7 +52,6 @@ Packages/
 Package.resolved
 
 ### Misc ###
-.Derived/
 *.log
 .idea/
 *.iml
