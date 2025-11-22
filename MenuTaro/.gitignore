@@ -37,9 +37,6 @@ DerivedData/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
-*.xcodeproj
-*.xcworkspace
-*.xcworkspace/xcuserdata/
 
 ### Tuist ###
 .graph
@@ -48,8 +45,6 @@ Derived/
 Tuist/.build
 Tuist/Generated
 .tuist/
-*.xcodeproj
-*.xcworkspace
 
 ### Swift Package Manager ###
 .swiftpm/
