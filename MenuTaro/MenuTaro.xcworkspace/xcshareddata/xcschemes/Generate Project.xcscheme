@@ -25,7 +25,7 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <PathRunnable
-         FilePath = "/Users/macmini/.local/share/mise/installs/tuist/4.78.0/bin/tuist"
+         FilePath = "/opt/homebrew/bin/tuist"
          runnableDebuggingMode = "0">
       </PathRunnable>
       <CommandLineArguments>

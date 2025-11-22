@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,7 +27,6 @@
 		2ED4AA2EC0FC7D4F01370D7D /* BookmarkCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725987069BAD7148188AB2F6 /* BookmarkCardView.swift */; };
 		346C33267BD2E07281A2710F /* BookmarkCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E9BB487D4AA1DE8392EE0 /* BookmarkCategoryView.swift */; };
 		3728158BF7E93D2C1317BF25 /* SnackTaro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5243AF27B9C39FD5DDC5AA /* SnackTaro.swift */; };
-		376F0A0ABEAE11A6B8342961 /* Lottie.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A99FA77AA071AACA4B33950E /* Lottie.xcframework */; };
 		39B521665EDF9EF3EE8C55A7 /* ConsentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5864522E9A1D1A59734CF5C /* ConsentRow.swift */; };
 		39BCD971D0C95AEA395410E4 /* SnackTaro2.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82215807BBD1488F6D87831 /* SnackTaro2.swift */; };
 		3C2434AB659AF4BB81D479B8 /* OrangeButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C00EF8B2D6AD9EB7E80E4B /* OrangeButtonStyle.swift */; };
@@ -66,7 +65,6 @@
 		9BC83A3C89DC26A22618E5D1 /* MenuTaroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620F3668B34BB5EE5FEBB69A /* MenuTaroView.swift */; };
 		A31D7D55EAEC43C7E055BE74 /* AppRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AACE4CB39A23C87F4D77A8 /* AppRoute.swift */; };
 		A3359AD3AC825F2C4CA85C47 /* RankingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A46AEF5FAD98F1F15C16DF /* RankingCardView.swift */; };
-		A482A550DBFE50072972106A /* Lottie.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A99FA77AA071AACA4B33950E /* Lottie.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A5FE089F4A5B52FA87A4858E /* MenuTaroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD4FF89A6EBC429645667A6 /* MenuTaroViewModel.swift */; };
 		A773E1612BB89D89B163DFA9 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7734506C75D405EFAA659 /* SettingView.swift */; };
 		A78377D2228789F554C2DE41 /* TermsAndConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D4B42464B4F2496A34C1A3 /* TermsAndConditions.swift */; };
@@ -79,7 +77,6 @@
 		BA014A49AE51137B491CF867 /* ConsumptionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BB2F22D70F046B06B3E78E /* ConsumptionRecord.swift */; };
 		BA8F43C5DBBC03C6B605ECD0 /* BackgroundStylePreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0884936DAA202D544341E9B7 /* BackgroundStylePreference.swift */; };
 		BFE46C97F5CE2730D89B0901 /* ConstantsTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15276176CC76AF407CEC6E /* ConstantsTestView.swift */; };
-		C1A250E32E441273EC5C74D6 /* _LottieStub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B272EA7726E50189081C87 /* _LottieStub.framework */; };
 		C1A51FB40B9456F474C5DFAC /* RadialLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BD2B2148E6A4BF1C003AB3 /* RadialLayoutViewModel.swift */; };
 		C742176351CA5BEB8F6C83BE /* OnboardingTermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6AC31352D62DBF7DBBC907 /* OnboardingTermsViewModel.swift */; };
 		CAC87747334F9A0E4A990076 /* CustomTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473F30C9B93C8F08101FD79F /* CustomTopbar.swift */; };
@@ -132,7 +129,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A482A550DBFE50072972106A /* Lottie.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,11 +199,9 @@
 		8E15276176CC76AF407CEC6E /* ConstantsTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantsTestView.swift; sourceTree = "<group>"; };
 		930360228F0E4AC6C3049DDD /* PreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewData.swift; sourceTree = "<group>"; };
 		95E19E4D381474578DD8BF72 /* RankingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingView.swift; sourceTree = "<group>"; };
-		96B272EA7726E50189081C87 /* _LottieStub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = _LottieStub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C22BE972E7B8B823C8BF9D /* CustomToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToolbar.swift; sourceTree = "<group>"; };
 		98CD0BABFDE78522383758DB /* OnboardingNameSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNameSettingView.swift; sourceTree = "<group>"; };
 		9E763C283E4DBF2B045A4F2D /* TermsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsSectionView.swift; sourceTree = "<group>"; };
-		A99FA77AA071AACA4B33950E /* Lottie.xcframework */ = {isa = PBXFileReference; expectedSignature = "SelfSigned:892F1B43047B50538F2F46EAD92900DD3D4811F3582178C061A5FB20F111CB26"; lastKnownFileType = wrapper.xcframework; path = Lottie.xcframework; sourceTree = "<group>"; };
 		AB5F03278FF8ADC41C042000 /* OnboardingFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowViewModel.swift; sourceTree = "<group>"; };
 		AC6A9C0C46AB75F5DC2A78D6 /* TuistBundle+MenuTaro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+MenuTaro.swift"; sourceTree = "<group>"; };
 		AF663A51400593385CA28E03 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
@@ -246,8 +240,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1A250E32E441273EC5C74D6 /* _LottieStub.framework in Frameworks */,
-				376F0A0ABEAE11A6B8342961 /* Lottie.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,28 +383,12 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		6969C366BCB314041C28BC43 /* lottie-spm */ = {
-			isa = PBXGroup;
-			children = (
-				8CCF40578F87FF6BFA487B01 /* Lottie */,
-			);
-			path = "lottie-spm";
-			sourceTree = "<group>";
-		};
 		71DC2EEBE7B3FBC0C284CFEA /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
 				29D4B42464B4F2496A34C1A3 /* TermsAndConditions.swift */,
 			);
 			path = Sheets;
-			sourceTree = "<group>";
-		};
-		7DF7B6A1821AE32ED9F58A72 /* artifacts */ = {
-			isa = PBXGroup;
-			children = (
-				6969C366BCB314041C28BC43 /* lottie-spm */,
-			);
-			path = artifacts;
 			sourceTree = "<group>";
 		};
 		7EA3DE9724D2B05F2C5F85BB /* ViewModels */ = {
@@ -458,35 +434,11 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		8CCF40578F87FF6BFA487B01 /* Lottie */ = {
-			isa = PBXGroup;
-			children = (
-				A99FA77AA071AACA4B33950E /* Lottie.xcframework */,
-			);
-			path = Lottie;
-			sourceTree = "<group>";
-		};
-		9D839E7B4488B2992F74F4E2 /* .build */ = {
-			isa = PBXGroup;
-			children = (
-				7DF7B6A1821AE32ED9F58A72 /* artifacts */,
-			);
-			path = .build;
-			sourceTree = "<group>";
-		};
-		9FA9AE6B553A66C375BB6037 /* Tuist */ = {
-			isa = PBXGroup;
-			children = (
-				9D839E7B4488B2992F74F4E2 /* .build */,
-			);
-			path = Tuist;
-			sourceTree = "<group>";
-		};
 		A236264AD8A2B241801F7C62 = {
 			isa = PBXGroup;
 			children = (
-				B758B6F4AC2A17FB13C6CD94 /* Project */,
 				EE47145E5FE7B059D155E3CA /* Products */,
+				B758B6F4AC2A17FB13C6CD94 /* Project */,
 			);
 			sourceTree = "<group>";
 		};
@@ -495,7 +447,6 @@
 			children = (
 				88CE4BB30BD6C661ED54EDF2 /* Derived */,
 				08491A82BAEF3528961A2FAE /* MenuTaro */,
-				9FA9AE6B553A66C375BB6037 /* Tuist */,
 			);
 			name = Project;
 			sourceTree = "<group>";
@@ -543,7 +494,6 @@
 		EE47145E5FE7B059D155E3CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96B272EA7726E50189081C87 /* _LottieStub.framework */,
 				21E440AF5EF19CE3A709D8F0 /* MenuTaro.app */,
 				15C408331C91EAABF88816BA /* MenuTaroTests.xctest */,
 			);
@@ -854,7 +804,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -870,24 +823,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = V826FS4328;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Tuist/.build/artifacts/lottie-spm/Lottie",
-				);
 				INFOPLIST_FILE = "Derived/InfoPlists/MenuTaro-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fd2.tuist.MenuTaro;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.tuist.MenuTaro;
 				PRODUCT_NAME = MenuTaro;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1013,18 +964,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = V826FS4328;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/Tuist/.build/artifacts/lottie-spm/Lottie",
-				);
 				INFOPLIST_FILE = "Derived/InfoPlists/MenuTaro-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = fd2.tuist.MenuTaro;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.tuist.MenuTaro;
 				PRODUCT_NAME = MenuTaro;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;

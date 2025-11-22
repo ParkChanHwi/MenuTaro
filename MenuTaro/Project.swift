@@ -19,7 +19,7 @@ let project = Project(
             sources: ["MenuTaro/Sources/**"],
             resources: ["MenuTaro/Resources/**"],
             dependencies: [
-                .external(name: "Lottie")
+//                .external(name: "Lottie")
             ]
         ),
         .target(
