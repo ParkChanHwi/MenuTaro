@@ -7,6 +7,9 @@ cd MenuTaro
 curl https://mise.run | sh
 export PATH="$HOME/.local/bin:$PATH"
 
+# mise 설정이 신뢰되지 않아 실패하는 것을 방지
+mise trust mise.toml
+
 echo "❗️Current PATH: $PATH"
 
 echo "❗️mise version"
