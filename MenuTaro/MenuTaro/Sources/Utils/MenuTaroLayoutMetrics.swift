@@ -47,6 +47,7 @@ struct MenuTaroLayoutMetrics {
             verticalPadding: verticalPadding,
             bottomSpacer: bottomSpacer,
             orangeButtonBottomInset: verticalPadding
+    
         )
     }
 }
