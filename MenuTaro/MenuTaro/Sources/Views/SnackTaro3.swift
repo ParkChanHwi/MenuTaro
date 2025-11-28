@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SnackTaro3: View {
     @EnvironmentObject private var router:Router
+    @EnvironmentObject private var viewModel: SnackTaroViewModel
+    @Environment(\.modelContext) private var modelContext
     @State private var text = "과연..!"
     @State private var hasTriggeredNextStep = false
     
@@ -23,6 +25,7 @@ struct SnackTaro3: View {
                 .padding(.bottom, 259)
         }
         .onAppear {
+            viewModel.setContext(modelContext)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                 text = "빠직...빠드득...콰직.."
             }       }
@@ -31,7 +34,7 @@ struct SnackTaro3: View {
     private func scheduleTextAndNavigation() {
         guard !hasTriggeredNextStep else { return }
         hasTriggeredNextStep = true
-
+        viewModel.ensureRandomSnackSelected()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             text = "빠직...빠드득...콰직.."
         }
