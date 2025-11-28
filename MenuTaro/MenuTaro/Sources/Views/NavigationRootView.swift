@@ -92,9 +92,10 @@ struct NavigationRootView: View {
             
         case .setting:
             SettingView()
-                .navigationTitle("설정")
-                .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+                .customToolbar(title: "설정") {
+                    router.pop()
+                }
         
         case .ranking:
             RankingView()
@@ -109,6 +110,7 @@ struct NavigationRootView: View {
                 .customToolbar(title: "캘린더") {
                     router.pop()
                 }
+            
         }
     }
 
