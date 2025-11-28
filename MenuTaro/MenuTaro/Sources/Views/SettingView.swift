@@ -21,9 +21,6 @@ struct SettingView: View {
     var body: some View {
         NavigationView {
             VStack (alignment: .leading, spacing: 6) {
-                Text("공지사항")
-                    .padding(10)
-                    .font(.system(size: 20, weight: .bold))
                 NavigationLink(destination: NotiSettingView()) {
                     Text("알림 설정")
                         .padding(10)
