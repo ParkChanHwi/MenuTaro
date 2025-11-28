@@ -28,6 +28,7 @@ struct SettingView: View {
                     Text("알림 설정")
                         .padding(10)
                 }
+
                 NavigationLink(destination: SettingsTermsView(document: .serviceTerms)) {
                     Text("서비스 이용 약관")
                         .padding(10)
@@ -36,7 +37,8 @@ struct SettingView: View {
                     Text("개인정보 처리방침")
                         .padding(10)
                 }
-                Text("App version: Beta")
+
+                Text("App version: 1.0.0")
                     .padding(10)
                     .font(.system(size: 18, weight: .regular))
                     .foregroundColor(.gray)

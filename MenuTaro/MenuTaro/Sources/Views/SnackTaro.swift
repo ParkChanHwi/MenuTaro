@@ -11,6 +11,8 @@ struct SnackTaro: View {
     // SanckTaro2로 넘어갈지 결정하는 상태 변수
     @State private var navigateToSnackTaro2 = false
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var viewModel: SnackTaroViewModel
+    @Environment(\.modelContext) private var modelContext
     // 쿠키를 표시할 이미지 이름 배열
     let cookies = Array(repeating: "cookie_snack", count: 8)
     
@@ -31,16 +33,22 @@ struct SnackTaro: View {
                 VStack(spacing: 20) {
                     InfiniteRow(direction: .left, cookies: cookies)
                         .onTapGesture {
+                            viewModel.startNewFortune()
                             router.push(.snackFortune(step: .opening))
                         }
 
                     InfiniteRow(direction: .right, cookies: cookies)
                         .onTapGesture {
+                            viewModel.startNewFortune()
                             router.push(.snackFortune(step: .opening))
                         }
                 }
             }
         }
+        .onAppear {
+            viewModel.setContext(modelContext)
+        }
+
     }
 }
 
@@ -58,7 +66,20 @@ func cookieCircle(imageName: String, width: CGFloat, height: CGFloat) -> some Vi
         .overlay(
             Image(imageName)
                 .resizable()
-                .scaledToFit()
+                .scaledToFit()	
         )
 }
 
+func snackCircle(imageName: String, width: CGFloat, height: CGFloat) -> some View {
+    ZStack {
+        Circle()
+            .fill(Color.primaryRed)
+            .frame(width: width, height: height)
+
+        Image(imageName)
+            .resizable()
+            .scaledToFill()
+            .frame(width: width, height: height)
+            .clipShape(Circle())
+    }
+}

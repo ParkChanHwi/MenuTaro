@@ -21,6 +21,20 @@ struct FoodCardSeed {
     }
 }
 
+struct SnackSeed {
+    let name:String
+    let image: String
+    
+    func makeModel() -> Snack {
+        Snack(
+            snackId: UUID(),
+            name: name,
+            image: image
+        )
+    }
+}
+
+
 enum AppSeedData {
     static let foodCards: [FoodCardSeed] = [
         FoodCardSeed(name: "짜장면", details: "춘장이 듬뿍 올라간 정통 중식면", category: .chinese, image: "Jjajangmyeon"),
@@ -100,5 +114,29 @@ enum AppSeedData {
         FoodCardSeed(name: "알밥", details: "톡톡 터지는 날치알 덮밥", category: .korean, image: "RBap"),
         FoodCardSeed(name: "숯불구이", details: "향긋한 숯불에 구워낸 고기", category: .korean, image: "SootBul"),
         FoodCardSeed(name: "스테이크 덮밥", details: "부드러운 스테이크와 데리야키 소스", category: .western, image: "SteakDupbap")
+    ]
+    
+    
+    static let snacks: [SnackSeed] = [
+        SnackSeed(name: "조각케이크", image: "Cake"),
+        SnackSeed(name: "츄로스", image: "Churro"),
+        SnackSeed(name: "크로플", image: "Croffle"),
+        SnackSeed(name: "도넛", image: "Doughnut"),
+        SnackSeed(name: "피낭시에", image: "Financier"),
+        SnackSeed(name: "핫도그", image: "Hotdog"),
+        SnackSeed(name: "호떡", image: "Hotteok"),
+        SnackSeed(name: "아이스크림", image: "Icecream"),
+        SnackSeed(name: "꽈배기", image: "kkwabaegi"),
+        SnackSeed(name: "브라우니", image: "Brownie"),
+        SnackSeed(name: "푸딩", image: "Pudding"),
+        SnackSeed(name: "소금빵", image: "SaltBread"),
+        SnackSeed(name: "빙수", image: "Shavedice"),
+        SnackSeed(name: "롤케이크", image: "Swissroll"),
+        SnackSeed(name: "타코야끼", image: "Takoyaki"),
+        SnackSeed(name: "티라미수", image: "Tiramisu"),
+        SnackSeed(name: "와플", image: "Waffle"),
+        SnackSeed(name: "전남친토스트", image: "Xtoast"),
+        SnackSeed(name: "약과", image: "Yakgwa"),
+        SnackSeed(name: "요거트 아이스크림", image: "YoghurtIcecream")
     ]
 }
