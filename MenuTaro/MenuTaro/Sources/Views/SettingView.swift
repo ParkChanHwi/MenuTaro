@@ -34,7 +34,7 @@ struct SettingView: View {
                     .padding(10)
                 Text("약관 및 개인정보 처리방침")
                     .padding(10)
-                Text("App version: Beta")
+                Text("App version: 1.0.0")
                     .padding(10)
                     .font(.system(size: 18, weight: .regular))
                     .foregroundColor(.gray)
