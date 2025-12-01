@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -79,6 +79,7 @@
 		BFE46C97F5CE2730D89B0901 /* ConstantsTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E15276176CC76AF407CEC6E /* ConstantsTestView.swift */; };
 		C1A51FB40B9456F474C5DFAC /* RadialLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BD2B2148E6A4BF1C003AB3 /* RadialLayoutViewModel.swift */; };
 		C742176351CA5BEB8F6C83BE /* OnboardingTermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6AC31352D62DBF7DBBC907 /* OnboardingTermsViewModel.swift */; };
+		C94FC12A87FE19B9ECEE8A4A /* SnackTaroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F74C2ED5AE1D21574DAD3FC /* SnackTaroViewModel.swift */; };
 		CAC87747334F9A0E4A990076 /* CustomTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473F30C9B93C8F08101FD79F /* CustomTopbar.swift */; };
 		D3C96F741F4B9FD6DF1499A0 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290E2ADF539B1F7821875695 /* BookmarkViewModel.swift */; };
 		D572F9EBABB2C20A86CFC45B /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA67C993DF7524BEA548E643 /* BookmarkView.swift */; };
@@ -94,6 +95,7 @@
 		EDD711CA71B7BBA64744F09C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EA18B90DBFD0D21AA7882B /* HomeView.swift */; };
 		EDEC202C81D89BDF6B6C7B64 /* SnackTaro4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E9E05638005C71BD400FA /* SnackTaro4.swift */; };
 		EEA0120BCA7FBF0AA33A87BD /* RadialLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7E79537F46A20B2764C842F /* RadialLayoutView.swift */; };
+		F3FE581283AFFEF124B351B9 /* SettingsTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9889FD517138278726A876 /* SettingsTermsView.swift */; };
 		F718F73AE2004699BC690211 /* TuistFonts+MenuTaro.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89527DC826261CA6757062E /* TuistFonts+MenuTaro.swift */; };
 		F790876338BA1AECBFC4512A /* MenuTaroApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633A7A06A4A4980D4265A7EE /* MenuTaroApp.swift */; };
 		F7B4924744E4C32A0F08139A /* OnboardingProfileCharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6071E8C35169AD2CA935FB50 /* OnboardingProfileCharacterViewModel.swift */; };
@@ -189,6 +191,7 @@
 		748E9BB487D4AA1DE8392EE0 /* BookmarkCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCategoryView.swift; sourceTree = "<group>"; };
 		7D373FA2517B6B84E704F3BD /* Snack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snack.swift; sourceTree = "<group>"; };
 		7D6FA695280CDF6005DC4B47 /* MypageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageView.swift; sourceTree = "<group>"; };
+		7F74C2ED5AE1D21574DAD3FC /* SnackTaroViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackTaroViewModel.swift; sourceTree = "<group>"; };
 		7FE43F39879EC2DC25C10E9F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		82E1C2DD218D8A7577B9BB3D /* CardFrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFrontView.swift; sourceTree = "<group>"; };
 		877302F68D6A3ADAEBB42C97 /* startOfMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startOfMonth.swift; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 		F7A46AEF5FAD98F1F15C16DF /* RankingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCardView.swift; sourceTree = "<group>"; };
 		F7E79537F46A20B2764C842F /* RadialLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialLayoutView.swift; sourceTree = "<group>"; };
 		F89527DC826261CA6757062E /* TuistFonts+MenuTaro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistFonts+MenuTaro.swift"; sourceTree = "<group>"; };
+		FA9889FD517138278726A876 /* SettingsTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTermsView.swift; sourceTree = "<group>"; };
 		FBEEB1EE2B92CBE51A8F8F83 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -403,6 +407,7 @@
 				CBD4FF89A6EBC429645667A6 /* MenuTaroViewModel.swift */,
 				69D6B2D742A1BFC345B2739D /* MypageViewModel.swift */,
 				E6BD2B2148E6A4BF1C003AB3 /* RadialLayoutViewModel.swift */,
+				7F74C2ED5AE1D21574DAD3FC /* SnackTaroViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -539,6 +544,7 @@
 				C4B52925A2543DA5ABDAD23A /* NotificationPermissionToggleView.swift */,
 				C2703B03F41048EC4CB04CA9 /* NotiSettingView.swift */,
 				95E19E4D381474578DD8BF72 /* RankingView.swift */,
+				FA9889FD517138278726A876 /* SettingsTermsView.swift */,
 				6ED7734506C75D405EFAA659 /* SettingView.swift */,
 				1B5243AF27B9C39FD5DDC5AA /* SnackTaro.swift */,
 				D82215807BBD1488F6D87831 /* SnackTaro2.swift */,
@@ -721,6 +727,7 @@
 				F7B4924744E4C32A0F08139A /* OnboardingProfileCharacterViewModel.swift in Sources */,
 				C742176351CA5BEB8F6C83BE /* OnboardingTermsViewModel.swift in Sources */,
 				C1A51FB40B9456F474C5DFAC /* RadialLayoutViewModel.swift in Sources */,
+				C94FC12A87FE19B9ECEE8A4A /* SnackTaroViewModel.swift in Sources */,
 				29B6328E21203FEAD1F2BDE3 /* AppBackgroundView.swift in Sources */,
 				52A15D9736173519D1A69160 /* AppView.swift in Sources */,
 				346C33267BD2E07281A2710F /* BookmarkCategoryView.swift in Sources */,
@@ -741,6 +748,7 @@
 				60A76A96D7159E1641961A21 /* OnboardingTermsView.swift in Sources */,
 				7C4F4338DBAF9DF5E4970059 /* RankingView.swift in Sources */,
 				A773E1612BB89D89B163DFA9 /* SettingView.swift in Sources */,
+				F3FE581283AFFEF124B351B9 /* SettingsTermsView.swift in Sources */,
 				A78377D2228789F554C2DE41 /* TermsAndConditions.swift in Sources */,
 				3728158BF7E93D2C1317BF25 /* SnackTaro.swift in Sources */,
 				39BCD971D0C95AEA395410E4 /* SnackTaro2.swift in Sources */,
@@ -804,7 +812,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -820,7 +831,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = V826FS4328;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/MenuTaro-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -830,15 +840,17 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fd2.tuist.MenuTaro;
 				PRODUCT_NAME = MenuTaro;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -960,7 +972,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = V826FS4328;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/MenuTaro-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -970,14 +981,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fd2.tuist.MenuTaro;
 				PRODUCT_NAME = MenuTaro;
 				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
