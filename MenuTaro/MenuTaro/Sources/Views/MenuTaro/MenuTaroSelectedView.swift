@@ -77,7 +77,7 @@ struct MenuTaroSelectedView: View {
                         .frame(height: metrics.callToActionHeight)
                 }
                 .buttonStyle(OrangeButtonStyle())
-                .frame(maxWidth: metrics.cardWidth)
+                .frame(width: metrics.cardWidth)
 
                 /// "다시 뽑을래요" 버튼
                 /// 카드 선택화면으로 이동
@@ -91,7 +91,7 @@ struct MenuTaroSelectedView: View {
 
                 Spacer(minLength: metrics.bottomSpacer)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: geo.size.width, maxHeight: geo.size.height)
             .padding(.horizontal, metrics.horizontalPadding)
             .padding(.top, metrics.verticalPadding)
             .padding(.bottom, metrics.verticalPadding)

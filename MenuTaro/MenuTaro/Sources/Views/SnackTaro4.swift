@@ -3,42 +3,33 @@ import SwiftUI
 struct SnackTaro4: View {
     // 버튼 상태
     @State private var isBookmared = false
-    
+
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var viewModel: SnackTaroViewModel
+    @Environment(\.modelContext) private var modelContext
     var body: some View {
+        let snackName = viewModel.selectedSnack?.name ?? "간식을 불러오지 못했어요"
+        let snackImage = viewModel.selectedSnack?.image ?? "cookie_snack"
+
         VStack(spacing:32) {
             VStack {
                 Text("이번 간식은")
                     .font(.system(size: 22, weight: .semibold))
-                Text("아이스크림")
+                Text(snackName)
                     .font(.system(size: 28, weight: .semibold))
                     .foregroundColor(.primaryRed)
-                
-                cookieCircle(imageName: "ice", width: 285, height: 285)
-                    .padding(.vertical, 85)
+
+                snackCircle(imageName: snackImage, width: 260, height: 260)
+                    .padding(.vertical, 20)
             }
             .offset(y: 40)
             
             VStack {
                 Button {
-                    isBookmared.toggle()
-                } label: {
-                    HStack {
-                        Text("이 메뉴카드 저장")
-                            .font(.system(size: 14))
-                        Text(Image(systemName: isBookmared ? "bookmark.fill" : "bookmark"))
-                    }
-                }
-                .foregroundColor(.primaryRed)
-                .frame(width: 153, height: 41)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 50)
-                        .stroke(Color.primaryRed, lineWidth: 1)
-                )
-                Button {
+                    viewModel.logConsumptionIfNeeded()
                     router.popToRoot()
                 } label: {
-                    Text("이 메뉴 먹을게요")
+                    Text("이 간식 먹을게요")
                         .font(.system(size: 18, weight: .semibold))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
@@ -48,10 +39,10 @@ struct SnackTaro4: View {
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 .padding(.horizontal, 20)
                 .padding(.top, 10)
-                .padding(.bottom, -10)
             }
             
             Button {
+                viewModel.startNewFortune()
                 router.pop(to: .snackFortune(step:.selection))
             }label: {
                 Text("다시 뽑을래요")
@@ -59,6 +50,9 @@ struct SnackTaro4: View {
                     .foregroundColor(.gray)
                     .clipShape(Capsule())
             }
+        }
+        .onAppear {
+            viewModel.setContext(modelContext)
         }
     }
 }

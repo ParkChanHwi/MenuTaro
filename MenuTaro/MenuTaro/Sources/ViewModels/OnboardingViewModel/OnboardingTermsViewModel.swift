@@ -15,7 +15,7 @@ enum TermsDocument: Hashable {
     var title: String {
         switch self {
         case .serviceTerms:
-            return "앱 기본 이용약관"
+            return "서비스 이용약관"
         case .privacyPolicy:
             return "개인정보 처리방침"
         case .marketingConsent:

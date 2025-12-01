@@ -17,7 +17,8 @@ struct NavigationRootView: View {
     @AppStorage("hasOnboarded") private var hasOnboarded = false
     @State private var didTriggerOnboarding = false
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    @StateObject private var snackFortuneViewModel = SnackTaroViewModel()
+    
     var body: some View {
         ZStack {
             AppBackgroundView(style: bgStyle)
@@ -91,9 +92,10 @@ struct NavigationRootView: View {
             
         case .setting:
             SettingView()
-                .navigationTitle("설정")
-                .navigationBarTitleDisplayMode(.inline)
                 .environmentObject(router)
+                .customToolbar(title: "설정") {
+                    router.pop()
+                }
         
         case .ranking:
             RankingView()
@@ -108,6 +110,7 @@ struct NavigationRootView: View {
                 .customToolbar(title: "캘린더") {
                     router.pop()
                 }
+            
         }
     }
 
@@ -145,19 +148,23 @@ struct NavigationRootView: View {
                 .customToolbar(title: "포춘 쿠키") {
                     router.pop()
                 }
+                .environmentObject(snackFortuneViewModel)
         case .opening:
             SnackTaro2()
                 .customToolbar(title: "포춘 쿠키") {
                     router.pop()
                 }
+                .environmentObject(snackFortuneViewModel)
         case .reveal:
             SnackTaro3()
                 .customToolbar(title: "포춘 쿠키", showBackButton: false) {
                 }
+                .environmentObject(snackFortuneViewModel)
         case .result:
             SnackTaro4()
                 .customToolbar(title: "포춘 쿠키", showBackButton: false) {
                 }
+                .environmentObject(snackFortuneViewModel)
         }
     }
 }
@@ -172,13 +179,13 @@ extension NavigationRootView {
         let existingCards = (try? modelContext.fetch(descriptor)) ?? []
         var didChange = false
 
-        var existingByName: [String: FoodCard] = [:]
+        var existingFoodByName: [String: FoodCard] = [:]
         for card in existingCards {
-            existingByName[card.name] = card
+            existingFoodByName[card.name] = card
         }
-
+        
         for seed in AppSeedData.foodCards {
-            if let card = existingByName[seed.name] {
+            if let card = existingFoodByName[seed.name] {
                 if card.details != seed.details || card.category != seed.category || card.image != seed.image {
                     card.details = seed.details
                     card.category = seed.category
@@ -191,6 +198,25 @@ extension NavigationRootView {
             }
         }
 
+        var snackDescriptor = FetchDescriptor<Snack>()
+        let existingSnacks = (try? modelContext.fetch(snackDescriptor)) ?? []
+        var existingSnackByName: [String: Snack] = [:]
+        for snack in existingSnacks {
+            existingSnackByName[snack.name] = snack
+        }
+
+        for seed in AppSeedData.snacks {
+            if let snack = existingSnackByName[seed.name] {
+                if snack.image != seed.image {
+                    snack.image = seed.image
+                    didChange = true
+                }
+            } else {
+                modelContext.insert(seed.makeModel())
+                didChange = true
+            }
+        }
+        
         guard didChange else { return }
 
         do { try modelContext.save() }

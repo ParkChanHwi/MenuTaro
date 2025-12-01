@@ -10,6 +10,8 @@ struct SnackTaro2: View {
     // SanckTaro3로 넘어갈지 결정하는 상태 변수
     @State private var navigateToSnackTaro3 = false
     @EnvironmentObject private var router: Router
+    @EnvironmentObject private var viewModel: SnackTaroViewModel
+    @Environment(\.modelContext) private var modelContext
     var body: some View {
         VStack {
             VStack {
@@ -26,6 +28,9 @@ struct SnackTaro2: View {
                     router.push(.snackFortune(step: .reveal))
                 }
                 .padding(.bottom, 269)
+        }
+        .onAppear {
+            viewModel.setContext(modelContext)
         }
     }
 }
