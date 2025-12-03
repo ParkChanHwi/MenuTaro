@@ -77,7 +77,7 @@ struct MenuTaroView: View {
                 }
                 
                 Spacer()
-                Text("위로 드래그해서\n카드를 선택해주세요")
+                Text("카드를 꾹 누른 뒤\n위로 드래그 해 선택해 주세요")
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .font(.system(size: 15, weight: .bold))
