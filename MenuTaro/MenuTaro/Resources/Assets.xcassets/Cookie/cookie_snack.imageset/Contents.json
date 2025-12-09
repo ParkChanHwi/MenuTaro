@@ -1,7 +1,6 @@
 {
   "images" : [
     {
-      "filename" : "cookie_normal.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -10,6 +9,7 @@
       "scale" : "2x"
     },
     {
+      "filename" : "cookie_snack.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
