@@ -90,7 +90,7 @@ struct HomeView: View {
                                     Text("간식 포춘쿠키")
                                         .font(.system(size: 18, weight: .medium))
                                         .foregroundColor(.white)
-                                        .frame(maxWidth: .infinity, alignment: .center)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                     
                                     Image("cookie_broken_home")
                                         .resizable()
