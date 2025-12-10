@@ -72,7 +72,7 @@ struct HomeView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(
-                                            width: gradientCardW * 0.565,
+                                            width: gradientCardW * 0.615,
                                             height: gradientCardH * 1.225
                                         )
                                 }
