@@ -63,7 +63,7 @@ struct HomeView: View {
                         } label: {
                             GradientCardView(width: gradientCardW, height: gradientCardH) {
                                 HStack {
-                                    Text("데일리 메뉴 타로")
+                                    Text("데일리 메뉴타로")
                                         .font(.system(size: 18, weight: .medium))
                                         .foregroundColor(.white)
                                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -72,7 +72,7 @@ struct HomeView: View {
                                         .resizable()
                                         .scaledToFit()
                                         .frame(
-                                            width: gradientCardW * 0.615,
+                                            width: gradientCardW * 0.606,
                                             height: gradientCardH * 1.225
                                         )
                                 }
