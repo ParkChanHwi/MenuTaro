@@ -2,9 +2,11 @@ import SwiftUI
 
 // NavigationStack으로 이동한 View에 사용
 struct CustomToolbar: ViewModifier {
+    @EnvironmentObject private var router: Router
     var title: String
     var onBack: (() -> Void)?
     var showBackButton: Bool = true
+    var showGearButton: Bool = false
     
     func body(content: Content) -> some View {
         content
@@ -28,12 +30,26 @@ struct CustomToolbar: ViewModifier {
                     Text(title)
                         .font(.system(size: 18, weight: .semibold))
                 }
+                if showGearButton {
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        Button {
+                                            router.push(.setting)
+                                        } label: {
+                                            HStack {
+                                                Image(systemName: "gearshape")
+                                                    .font(.system(size: 13))
+                                                    .foregroundColor(.white)
+                                            }
+                                        }
+                                    }
+                                }
             }
+            .toolbarBackground(.hidden, for: .navigationBar)
     }
 }
 
 extension View {
-    func customToolbar(title: String, showBackButton: Bool = true, onBack: (() -> Void)? = nil) -> some View {
-        self.modifier(CustomToolbar(title: title, onBack: onBack, showBackButton: showBackButton))
+    func customToolbar(title: String, showBackButton: Bool = true, showGearButton: Bool = false, onBack: (() -> Void)? = nil) -> some View {
+        self.modifier(CustomToolbar(title: title, onBack: onBack, showBackButton: showBackButton, showGearButton: showGearButton))
     }
 }

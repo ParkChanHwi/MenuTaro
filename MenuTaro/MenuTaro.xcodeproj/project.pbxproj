@@ -80,7 +80,6 @@
 		C1A51FB40B9456F474C5DFAC /* RadialLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BD2B2148E6A4BF1C003AB3 /* RadialLayoutViewModel.swift */; };
 		C742176351CA5BEB8F6C83BE /* OnboardingTermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6AC31352D62DBF7DBBC907 /* OnboardingTermsViewModel.swift */; };
 		C94FC12A87FE19B9ECEE8A4A /* SnackTaroViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F74C2ED5AE1D21574DAD3FC /* SnackTaroViewModel.swift */; };
-		CAC87747334F9A0E4A990076 /* CustomTopbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473F30C9B93C8F08101FD79F /* CustomTopbar.swift */; };
 		D3C96F741F4B9FD6DF1499A0 /* BookmarkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290E2ADF539B1F7821875695 /* BookmarkViewModel.swift */; };
 		D572F9EBABB2C20A86CFC45B /* BookmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA67C993DF7524BEA548E643 /* BookmarkView.swift */; };
 		D5EDE4F8FEB0CA1E7D40BCC9 /* CardFrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82E1C2DD218D8A7577B9BB3D /* CardFrontView.swift */; };
@@ -164,7 +163,6 @@
 		3F6A75FECD0F4A6ED861BBDB /* AppSeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSeedData.swift; sourceTree = "<group>"; };
 		44B07219C5F63FA79EA1B764 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		4555C26F8509C422AD98646E /* MypageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageCardView.swift; sourceTree = "<group>"; };
-		473F30C9B93C8F08101FD79F /* CustomTopbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTopbar.swift; sourceTree = "<group>"; };
 		493BA98004CC38A86E26B796 /* NotificationSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSchedule.swift; sourceTree = "<group>"; };
 		4C6E9E05638005C71BD400FA /* SnackTaro4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackTaro4.swift; sourceTree = "<group>"; };
 		4CD1CDECEDCED0360A6288DB /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 				62F6813897FCBADB2285EC7F /* CheckIcon.swift */,
 				E5864522E9A1D1A59734CF5C /* ConsentRow.swift */,
 				97C22BE972E7B8B823C8BF9D /* CustomToolbar.swift */,
-				473F30C9B93C8F08101FD79F /* CustomTopbar.swift */,
 				D0DF16A0298D80D378139576 /* GradientCardView.swift */,
 				4555C26F8509C422AD98646E /* MypageCardView.swift */,
 				15C00EF8B2D6AD9EB7E80E4B /* OrangeButtonStyle.swift */,
@@ -536,10 +533,10 @@
 				748E9BB487D4AA1DE8392EE0 /* BookmarkCategoryView.swift */,
 				DA67C993DF7524BEA548E643 /* BookmarkView.swift */,
 				4CD1CDECEDCED0360A6288DB /* CalendarView.swift */,
-				63EA18B90DBFD0D21AA7882B /* HomeView.swift */,
 				2C0D8BC9D38141E5B5131030 /* InfiniteRow.swift */,
 				5A2961D024F9AB3455C8BE87 /* MypageEditView.swift */,
 				7D6FA695280CDF6005DC4B47 /* MypageView.swift */,
+				63EA18B90DBFD0D21AA7882B /* HomeView.swift */,
 				1F9856B2D45A08FDF22C0B2D /* NavigationRootView.swift */,
 				C4B52925A2543DA5ABDAD23A /* NotificationPermissionToggleView.swift */,
 				C2703B03F41048EC4CB04CA9 /* NotiSettingView.swift */,
@@ -678,7 +675,6 @@
 				F9907ECCFD70870938203911 /* CheckIcon.swift in Sources */,
 				39B521665EDF9EF3EE8C55A7 /* ConsentRow.swift in Sources */,
 				41C07F237F2BFEAB72CDC4A7 /* CustomToolbar.swift in Sources */,
-				CAC87747334F9A0E4A990076 /* CustomTopbar.swift in Sources */,
 				1284AE6CDA409405AB080305 /* GradientCardView.swift in Sources */,
 				54EA4D0FFB0C48B9797C712F /* MypageCardView.swift in Sources */,
 				3C2434AB659AF4BB81D479B8 /* OrangeButtonStyle.swift in Sources */,

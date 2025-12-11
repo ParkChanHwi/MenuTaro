@@ -110,7 +110,19 @@ struct NavigationRootView: View {
                 .customToolbar(title: "캘린더") {
                     router.pop()
                 }
-            
+        case .notiSetting:
+                NotiSettingView()
+                    .environmentObject(router)
+                    .customToolbar(title: "알림 설정") {
+                        router.pop()
+                    }
+
+        case let .settingsTerms(document):
+                SettingsTermsView(document: document)
+                    .environmentObject(router)
+                    .customToolbar(title: document.title) {
+                        router.pop()
+                    }
         }
     }
 
