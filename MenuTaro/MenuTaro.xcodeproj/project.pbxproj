@@ -610,11 +610,12 @@
 			};
 			buildConfigurationList = 94BF0EC5592B572F775AA317 /* Build configuration list for PBXProject "MenuTaro" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				en,
+				ko,
 			);
 			mainGroup = A236264AD8A2B241801F7C62;
 			productRefGroup = EE47145E5FE7B059D155E3CA /* Products */;
