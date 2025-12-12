@@ -38,8 +38,6 @@ public enum MenuTaroAsset: Sendable {
     public static let cardback = MenuTaroImages(name: "cardback")
     public static let cardfront = MenuTaroImages(name: "cardfront")
     public static let transparentCard = MenuTaroImages(name: "transparentCard")
-    public static let catCookieSnack = MenuTaroImages(name: "cat_cookie_snack")
-    public static let catHome = MenuTaroImages(name: "cat_home")
     public static let chicken = MenuTaroImages(name: "chicken")
     public static let croissant = MenuTaroImages(name: "croissant")
     public static let iceCream = MenuTaroImages(name: "iceCream")
