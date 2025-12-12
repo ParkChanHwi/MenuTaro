@@ -610,11 +610,12 @@
 			};
 			buildConfigurationList = 94BF0EC5592B572F775AA317 /* Build configuration list for PBXProject "MenuTaro" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ko;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				en,
+				ko,
 			);
 			mainGroup = A236264AD8A2B241801F7C62;
 			productRefGroup = EE47145E5FE7B059D155E3CA /* Products */;
@@ -825,6 +826,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
+				DEVELOPMENT_TEAM = V826FS4328;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/MenuTaro-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -965,6 +967,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = NO;
+				DEVELOPMENT_TEAM = V826FS4328;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Derived/InfoPlists/MenuTaro-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
