@@ -10,6 +10,7 @@ let project = Project(
             bundleId: "fd2.tuist.MenuTaro",
             infoPlist: .extendingDefault(
                 with: [
+                    "CFBundleDisplayName": "뭐 먹을끼니?",
                     "UILaunchScreen": [
                         "UIColorName": "",
                         "UIImageName": "",
@@ -19,7 +20,7 @@ let project = Project(
             sources: ["MenuTaro/Sources/**"],
             resources: ["MenuTaro/Resources/**"],
             dependencies: [
-//                .external(name: "Lottie")
+                // .external(name: "Lottie")
             ]
         ),
         .target(
