@@ -25,7 +25,7 @@ final class OnboardingFlowViewModel: ObservableObject {
     @AppStorage("hasOnboarded") private var hasOnboarded = false
     private var cancellables = Set<AnyCancellable>()
 
-    init(characters: [String] = ["chicken", "tiramisu", "croissant", "iceCream"]) {
+    init(characters: [String] = ["chicken", "tirami", "croissant", "iceCream"]) {
         let selection = OnboardingProfileCharacterViewModel(characters: characters)
         self.characterSelection = selection
         self.selectedCharacter = selection.selectedCharacter
