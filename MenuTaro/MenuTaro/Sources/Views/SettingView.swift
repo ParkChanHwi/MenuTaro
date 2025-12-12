@@ -27,10 +27,6 @@ struct SettingView: View {
                         .padding(10)
                 }
 
-                Text("App version: 1.0.0")
-                    .padding(10)
-                    .font(.system(size: 18, weight: .regular))
-                    .foregroundColor(.gray)
             }
             .padding(.leading, -140)
             .padding(.bottom, 410)
