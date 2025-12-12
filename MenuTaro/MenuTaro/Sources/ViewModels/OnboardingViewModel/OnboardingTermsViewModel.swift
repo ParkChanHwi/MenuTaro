@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum TermsDocument: Hashable {
+public enum TermsDocument: Hashable {
     case serviceTerms
     case privacyPolicy
     case marketingConsent

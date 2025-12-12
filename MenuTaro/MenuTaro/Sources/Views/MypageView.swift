@@ -36,7 +36,6 @@ struct MypageView: View {
         
         ScrollView {
             VStack(spacing: 20) {
-                customTopbar(title: "마이페이지", showGearButton: true)
                 HStack(alignment: .center, spacing: 16) {
                     ProfileCharacterAvatar(
                         imageName: profileImageName,
@@ -136,7 +135,7 @@ struct MypageView: View {
                 Spacer()
             }
             .padding(.horizontal, hInset)
-            .padding(.top, 13)
+            .padding(.top, 15)
         }
         .onAppear {
             vm.setContext(context)
