@@ -15,8 +15,9 @@ class User {
     var favoriteFood: FoodCard?
     var favoriteSnack: Snack?
     
-    @Relationship var records: [ConsumptionRecord]
-    @Relationship var bookmarks: [Bookmark]
+    @Relationship(deleteRule: .cascade) var records: [ConsumptionRecord]
+    @Relationship(deleteRule: .cascade)
+    var bookmarks: [Bookmark]
 
     init(userId: UUID = UUID(), nickname: String, profileImage:String,favoriteFood: FoodCard? = nil, favoriteSnack: Snack? = nil, records: [ConsumptionRecord] = [], bookmarks: [Bookmark] = []) {
         self.userId = userId

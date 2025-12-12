@@ -1,0 +1,34 @@
+#!/bin/sh
+set -e
+
+# 이 스크립트가 있는 디렉토리 (= 리포지토리 루트) 기준으로 이동
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR/MenuTaro"
+
+echo "Current directory: $(pwd)"
+
+# mise 설치 (이미 설치돼 있어도 여러 번 호출해도 문제 없음)
+curl https://mise.run | sh
+
+# mise 바이너리 경로 추가
+export PATH="$HOME/.local/bin:$PATH"
+
+echo "❗️Current PATH: $PATH"
+
+echo "❗️mise version"
+/Users/macmini/.local/bin/mise --version
+
+echo "❗️mise install"
+/Users/macmini/.local/bin/mise install  # .mise.toml 기반으로 설치
+
+# mise 활성화 (zsh/bsh 크게 상관 없음, 쉘에 export 들을 흘려보내는 거라)
+eval "$(/Users/macmini/.local/bin/mise activate zsh --shims)"
+
+echo "❗️mise doctor"
+mise doctor
+
+echo "❗️tuist install"
+tuist install
+
+echo "❗️tuist generate"
+tuist generate

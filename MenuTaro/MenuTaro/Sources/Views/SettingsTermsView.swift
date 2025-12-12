@@ -24,9 +24,6 @@ struct SettingsTermsView: View {
             .padding(.horizontal, 20)
             .padding(.top, 24)
         }
-        .customToolbar(title: document.title) {
-            dismiss()
-        }
     }
 }
 

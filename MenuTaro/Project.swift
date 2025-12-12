@@ -5,26 +5,45 @@ let project = Project(
     targets: [
         .target(
             name: "MenuTaro",
-            destinations: .iOS,
+
+            destinations: [.iPhone],
+
             product: .app,
-            bundleId: "dev.tuist.MenuTaro",
-            infoPlist: .extendingDefault(
-                with: [
-                    "UILaunchScreen": [
-                        "UIColorName": "",
-                        "UIImageName": "",
-                    ],
-                ]
-            ),
+            bundleId: "fd2.tuist.MenuTaro",
+
+            deploymentTargets: .iOS("17.6"),
+
+            infoPlist: .extendingDefault(with: [
+                "CFBundleShortVersionString": "1.0.1",
+                "CFBundleVersion": "2",
+
+                "UIDeviceFamily": [1],
+
+                "CFBundleDevelopmentRegion": "ko",
+                "CFBundleLocalizations": ["ko"],
+
+                "CFBundleDisplayName": "뭐 먹을끼니?",
+                "UILaunchScreen": [
+                    "UIColorName": "",
+                    "UIImageName": "",
+                ],
+            ]),
+
             sources: ["MenuTaro/Sources/**"],
             resources: ["MenuTaro/Resources/**"],
-            dependencies: [
-                .external(name: "Lottie")
-            ]
+            dependencies: [],
+
+            settings: .settings(
+                base: [
+                    "SUPPORTS_MACCATALYST": "NO",
+                    "DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER": "NO",
+                ]
+            )
         ),
+
         .target(
             name: "MenuTaroTests",
-            destinations: .iOS,
+            destinations: [.iPhone],
             product: .unitTests,
             bundleId: "dev.tuist.MenuTaroTests",
             infoPlist: .default,

@@ -11,7 +11,7 @@ final class OnboardingProfileCharacterViewModel: ObservableObject {
     let characters: [String]
 
     init(
-        characters: [String] = ["chicken", "tiramisu", "croissant", "iceCream"],
+        characters: [String] = ["chicken", "tirami", "croissant", "iceCream"],
         selectedCharacter: String? = nil
     ) {
         self.characters = characters

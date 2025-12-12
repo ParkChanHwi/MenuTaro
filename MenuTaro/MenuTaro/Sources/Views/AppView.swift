@@ -20,7 +20,6 @@ struct AppView: View {
                     Text("북마크").appFont(17)
                 }
                 .navigationTitle("북마크")
-                .navigationBarTitleDisplayMode(.inline)
             
             HomeView()
                 .tag(Router.Tab.home)
@@ -28,7 +27,6 @@ struct AppView: View {
                     Image(systemName: "house")
                     Text("홈").appFont(17)
                 }
-                .navigationBarTitleDisplayMode(.inline)
             
             MypageView()
                 .tag(Router.Tab.mypage)
@@ -37,12 +35,39 @@ struct AppView: View {
                     Text("마이페이지")
                 }
                 .navigationTitle("마이페이지")
-                .navigationBarTitleDisplayMode(.inline)
         }
         .tint(.primaryRed)
+        .navigationBarTitleDisplayMode(.inline)
+        .if(router.selectedTab != .home) { view in
+            view.customToolbar(
+                title: currentTitle,
+                showBackButton: false,
+                showGearButton: router.selectedTab == .mypage
+            )
+        }
+    }
+    private var currentTitle: String {
+        switch router.selectedTab {
+        case .bookmarks: return "북마크"
+        case .home:      return "" // 홈은 상단바 없음
+        case .mypage:    return "마이페이지"
+        }
     }
 }
 
+extension View {
+    @ViewBuilder
+    func `if`<Content: View>(
+        _ condition: Bool,
+        transform: (Self) -> Content
+    ) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}
 
 #Preview {
     NavigationRootView()

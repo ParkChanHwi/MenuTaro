@@ -21,6 +21,8 @@ public enum AppRoute: Hashable {
     case setting
     case ranking
     case calendar
+    case notiSetting
+    case settingsTerms(document: TermsDocument)
 }
 
 public extension AppRoute {
@@ -57,9 +59,13 @@ public extension AppRoute {
             return Identifier(key: "ranking")
         case .calendar:
             return Identifier(key: "calendar")
+        case .notiSetting:
+            return Identifier(key: "notiSetting")
+        case .settingsTerms(let document):
+            return Identifier(key: "settingsTerms_\(document.title)")
         }
     }
-    
+
     ///직렬화된 식별자로부터 라우트를 복원합니다.
     init?(identifier: Identifier) {
         switch identifier.key {
