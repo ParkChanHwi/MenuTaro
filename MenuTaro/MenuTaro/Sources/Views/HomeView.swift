@@ -141,6 +141,7 @@ struct HomeView: View {
                 vm.setContext(context)
             }
         }
+        .toolbar(.hidden, for : .navigationBar)
     }
 }
 #Preview {
